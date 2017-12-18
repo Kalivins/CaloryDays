@@ -10,7 +10,7 @@ while ($data = $posts->fetch())
         <p>
             <?= nl2br(htmlspecialchars($data['brands'])) ?>
             <br />
-            <img src="<?= $data['image_url'] ?>" alt="image du product">
+            <img src="<?= $data['image_small_url'] ?>" width="200" height="200" alt="image de <?= $data['product_name'] ?>">
         </p>
     </div>
     <?php } ?>

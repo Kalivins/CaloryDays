@@ -9,16 +9,16 @@ class PostProducts extends Bdd
     public function getProducts()
     {
         $pdo = $this->dbConnect();
-        $req = $pdo->query('SELECT product_name, brands, image_url FROM food LIMIT 0,5');
+        $req = $pdo->query('SELECT product_name, brands, image_small_url, image_url FROM food ORDER BY image_url DESC LIMIT 0,30');
 
         return $req;
     }
 
-    public function getProduct($postId)
+    public function getProduct($productId)
     {
         $pdo = $this->dbConnect();
-        $req = $pdo->prepare('SELECT product_name, brands, image_url, energy_100g FROM food WHERE id = :id');
-        $req->bindParam(':id', $postId);
+        $req = $pdo->prepare('SELECT product_name, brands, image_url, image_small_url, energy_100g FROM food WHERE id = :id');
+        $req->bindParam(':id', $productId);
         $req->execute();
         $post = $req->fetch();
 

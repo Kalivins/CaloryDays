@@ -12,12 +12,12 @@ function listProducts()
     require('view/frontend/ProductsView.php');
 }
 
-/*function listComments()
+function listComments()
 {
-    $pdo = new Ksr\Model\BDD();
-    $commentsRecipe = new Ksr\Model\CommentRecipe();
+    $pdo = new Ksr\Model\Bdd();
+    $commentsRecipe = new Ksr\Model\CommentsRecipe();
 
-    $post = $pdo->getPost($parts_uri[3]);
+    $post = $pdo->getComments($parts_uri[3]);
     $comments = $commentRecipe->getComments($parts_uri[3]);
 
     require('view/frontend/postView.php');
