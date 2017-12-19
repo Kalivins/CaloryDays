@@ -15,30 +15,54 @@ switch ($parts_uri[2]){
         header('Location: '.$locate.'MyFridgeFood/home');
         break;
     case 'home':
-        echo "Bienvenue sur la page d'accueil !";
+        include('view/head.php');
+        include('view/nav.php');
+        include('view/home.php');
         listProducts();
+        include('view/footer.php');
         break;
     case 'add_recipe':
+        include('assets/include/head.php');
+        include('assets/include/nav.php');
         echo "Ajouter une recette";
+        include('assets/include/footer.php');
         break;
     case 'recipe':
+        include('assets/include/head.php');
+        include('assets/include/nav.php');
         echo "Voici votre recette";
+        include('assets/include/footer.php');
         break;
     case 'addcomment':
+        include('assets/include/head.php');
+        include('assets/include/nav.php');
         echo 'Vous avez ajouter un commentaire';
+        include('assets/include/footer.php');
         break;
     case 'product':
+        include('assets/include/head.php');
+        include('assets/include/nav.php');
         echo "Voici un produit";
+        include('assets/include/footer.php');
         break;
     case 'energy':
+        include('assets/include/head.php');
+        include('assets/include/nav.php');
         echo "Voici les calories de vos produits/recettes";
+        include('assets/include/footer.php');
         break;
     case 'fridge':
+        include('assets/include/head.php');
+        include('assets/include/nav.php');
         echo "Bienvenue dans votre frigo";
+        include('assets/include/footer.php');
         break;
     case 'deconnexion':
         break;
     default:
+        include('assets/include/head.php');
+        include('assets/include/nav.php');
         echo "Error 404";
+        include('assets/include/footer.php');
         break;       
 }

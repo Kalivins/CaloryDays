@@ -9,7 +9,7 @@ function listProducts()
     $postProducts = new \Ksr\MyFridgeFood\Model\PostProducts();
     $posts = $postProducts->getProducts();
 
-    require('view/frontend/ProductsView.php');
+    require('view/ProductsView.php');
 }
 
 function listComments()
@@ -20,7 +20,7 @@ function listComments()
     $post = $pdo->getComments($parts_uri[3]);
     $comments = $commentRecipe->getComments($parts_uri[3]);
 
-    require('view/frontend/postView.php');
+    require('view/postView.php');
 }
 
 function addComment($postId, $author, $comment)
@@ -35,4 +35,4 @@ function addComment($postId, $author, $comment)
     else {
         header('Location: '.$locate.'MyFridgeFood/addcomment/'.$postId);
     }
-}*/
+} 

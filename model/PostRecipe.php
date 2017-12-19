@@ -22,7 +22,6 @@ class PostRecipe extends Bdd
         $req->bindParam(':id', $recipeId);
         $req->execute();
         $post = $req->fetch();
-
         return $post;
     }
 }
