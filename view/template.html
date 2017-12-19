@@ -1,15 +1,21 @@
-<div class="logo">
-<a href="#" class="titre-logo waves-effect">Logo</a>
-</div>
-<?php 
-    if($parts_uri[2] == "home")
-    {
-        echo '<section class="description">
-            Bienvenue dans My Fridge Food pour trouver des recettes pour vous !
-        </section>';
-    }
-?>
-<nav>
+<!DOCTYPE html>
+<html lang="fr">
+{% block head %} {% endblock head %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ locate }}/MyFridgeFood/assets/css/style.css">
+    <link rel="stylesheet" href="{{ locate }}/MyFridgeFood/assets/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ locate }}/MyFridgeFood/assets/font-awesome/css/font-awesome.min.css">
+    <title></title>
+</head>
+    <body>
+    <div class="logo">
+            <a href="#" class="titre-logo waves-effect">Logo</a>
+    </div>
+    {% block landing %} {% endblock %}
+    <nav>
 <div class="nav-wrapper">
     <ul id="nav-mobil" class="left">
         <li><a href="#" data-activates="slide-out" class="collapse waves-effect"><i class="fa fa-bars" aria-hidden="true"></i></a></li> 
@@ -22,7 +28,6 @@
         </ul>
     </div>
 </nav>
- <!-- Modal -->
   <div id="connexion" class="modal">
     <div class="modal-content">
       <h4>Connexion</h4>
@@ -42,3 +47,11 @@
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
     </div>
   </div>
+   
+    {% block content %} {% endblock content %}
+
+<script src="{{locate}}/MyFridgeFood/assets/js/jquery.js"></script>
+<script src="{{locate}}/MyFridgeFood/assets/js/app.js"></script>
+<script src="{{locate}}/MyFridgeFood/assets/js/materialize.min.js"></script>
+    </body>
+</html>

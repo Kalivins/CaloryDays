@@ -1,62 +1,76 @@
 <?php
-require('controller/frontend.php');
+require('controller/baseController.php');
 require('vendor/autoload.php');
 // La variable locate qui défini le "nom de domaine" du site
-$locate = 'http://localhost/';
+$locate = 'http://localhost';
 
 $router = new AltoRouter();
 
-$loader = new Twig_Loader_Filesystem('view');
+$loader = new Twig_Loader_Filesystem(__DIR__ .'/view');
 $twig = new Twig_Environment($loader, array (
         'cache' => false,
 ));
 
 $router->setBasePath('MyFridgeFood/');
 
-$router->map('GET', '/', function() {
+$router->map( 'GET', '/', function() {
+    
+            header('Location: '.$locate.'/MyFridgeFood/home');
+});
+$router->map( 'GET', '/home', function() {
+    
             global $twig;
+            global $locate;
     
-            $params = ['nom' => "Sandrine"];
+            $recipes[] = listRecipes();
+            $params = [
+                "locate" => $locate,
+                "recipes" => $recipes
+                
+            ];
+            $template = $twig->load('home.html');
+            echo $template->render($params);
+});
+
+$router->map( 'GET', '/add_recipe', function() {
     
-            $template = $twig->load('test.php.twig');
+            global $twig;
+            global $locate;
+    
+            $params = [
+                "locate" => $locate,
+                
+            ];
+            $template = $twig->load('add_recipe.html');
+            echo $template->render($params);
+});
+
+$router->map( 'POST|GET', '/recipe/[i:id]', function() {
+    
+            global $twig;
+            global $locate;
+    
+            $recipe = viewRecipe($_POST['id']);
+            $params = [
+                "locate" => $locate,
+                "recipe_user" => $recipe['recipe_user'],
+                "ingredient" => $recipe['ingredient']
+                
+            ];
+            $template = $twig->load('recipeView.html');
             echo $template->render($params);
 });
 
 $match = $router->match();
 
 
+if( $match && is_callable( $match['target'] ) ) {
+call_user_func_array( $match['target'], $match['params'] );
+} else {
 
-
-// On request l'uri, puis on le découpe avec un explode, on enlève les 2 premiers du tableaux de l'url
-/*$uri = $_SERVER['REQUEST_URI'];
-$parts_uri = explode("/", $uri);
-unset($parts_uri[0], $parts_uri[1]);
-// On a nettoyé l'uri, on redonne une valeur propre à $uri
-$uri = join("/", $parts_uri);
-
-switch ($parts_uri[2]){
-    case '':
-        header('Location: '.$locate.'MyFridgeFood/home');
-        break;
-    case 'home':
-        include('view/head.php');
-        include('view/nav.php');
-        include('view/home.php');
-        listRecipes();
-        include('view/footer.php');
-        break;
-    case 'add_recipe':
-        include('assets/include/head.php');
-        include('assets/include/nav.php');
-        echo "Ajouter une recette";
-        include('assets/include/footer.php');
-        break;
-    case 'recipe':
-        include('view/head.php');
-        include('view/nav.php');
-        viewRecipe($parts_uri[3]);
-        include('view/footer.php');
-        break;
+header( $_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+}
+/*
     case 'addcomment':
         include('assets/include/head.php');
         include('assets/include/nav.php');

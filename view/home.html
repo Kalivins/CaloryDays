@@ -1,4 +1,14 @@
-<div class="container">
+    {% extends 'template.html' %}
+    {% block head %}
+        <title>Bienvenue sur MyFridgeFood</title>
+    {% endblock head %}
+    {% block landing %}
+        <section class="description">
+            Bienvenue dans My Fridge Food pour trouver des recettes pour vous !
+        </section>
+    {% endblock %}
+    {% block content %}
+   <div class="container">
     <div class="row">
         <div class="col s6 m4 l4">
             <div class="card menu-home darken-1">
@@ -40,3 +50,25 @@
         </div>
     </div>
 </div>
+       <div class="row">
+       {% for recipe in recipes %}
+        <div class="col s12 m4 l3">
+          <div class="card products">
+            <div class="card-image">
+            <img src="{{ recipe.photo }}" width="300" height="250" alt="image de {{ recipe.nom_recette }}">
+              <span class="card-title title-card">{{ recipe.nom_recette }}</span>
+            </div>
+            <div class="card-content">
+              <p class="truncate">{{ recipe.preparation }}</p>
+            </div>
+            <div class="card-action actioncard">
+             <form action="recipe/{{ recipe.id_recette }}" method="POST">
+              <button name="id" value="{{ recipe.id_recette }}" type="submit">Voir la recette</button>
+                </form>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+{% endblock content %}

@@ -5,12 +5,14 @@ require_once('model/PostProducts.php');
 require_once('model/PostRecipe.php');
 /*require_once('model/CommentsRecipe.php');*/
 
+
 function listRecipes()
 {
     $postRecipes= new \Ksr\MyFridgeFood\Model\PostRecipe();
     $posts = $postRecipes->getRecipes();
+    
+    return $posts;
 
-    require('view/listRecipes.php');
 }
 
 function viewRecipe($id)
@@ -18,7 +20,7 @@ function viewRecipe($id)
     $postRecipe = new \Ksr\MyFridgeFood\Model\PostRecipe();
     $post = $postRecipe->getRecipe($id);
     
-    require('view/RecipeView.php');
+    return $post;
 }
 function listComments()
 {
