@@ -14,11 +14,11 @@
     <ul id="nav-mobil" class="left">
         <li><a href="#" data-activates="slide-out" class="collapse waves-effect"><i class="fa fa-bars" aria-hidden="true"></i></a></li> 
 
-            <li><a href="home" class="waves-effect"><i class="fa fa-home" aria-hidden="true"></i><span class="hide-on-med-and-down"> home</span></a></li>
+            <li><a href="home" class="waves-effect"><i class="fa fa-home" aria-hidden="true"></i><span class="hide-on-med-and-down"> Accueil</span></a></li>
         </ul>
         <ul id="nav-mobile" class="right">
             <li><a href="#inscription" class="waves-effect modal-trigger"><i class="fa fa-sign-in" aria-hidden="true"></i> <span class="hide-on-med-and-down">Inscription</span></a></li>
-            <li><a href="#connexion" class="waves-effect modal-trigger"><i class="fa fa-user" aria-hidden="true"></i> <span class="hide-on-med-and-down">connexion</span></a></li>
+            <li><a href="#connexion" class="waves-effect modal-trigger"><i class="fa fa-user" aria-hidden="true"></i> <span class="hide-on-med-and-down">Connexion</span></a></li>
         </ul>
     </div>
 </nav>

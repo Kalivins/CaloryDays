@@ -1,0 +1,14 @@
+{
+    "name": "stagiaire/my-fridge-food",
+    "description": "Site de cuisine",
+    "authors": [
+        {
+            "name": "Kevin",
+            "email": "kevillard@hotmail.fr"
+        }
+    ],
+    "require": {
+        "altorouter/altorouter": "^1.2",
+        "twig/twig": "^2.0"
+    }
+}

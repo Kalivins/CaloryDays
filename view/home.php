@@ -6,7 +6,7 @@
                 <span class="card-title center">Calorie</span>
             </div>
             <div class="card-action">
-                <a href="energy" class="waves-effect waves-light btn">Acceder</a>
+                <a href="energy" class="waves-effect waves-light btn">Accéder</a>
                 </div>
             </div>
         </div>
@@ -16,17 +16,17 @@
                     <span class="card-title center">Vos recettes</span>
                 </div>
                 <div class="card-action">
-                    <a href="add_recipe" class="waves-effect waves-light btn">Acceder</a>
+                    <a href="add_recipe" class="waves-effect waves-light btn">Accéder</a>
                 </div>
             </div>
         </div>
             <div class="col s12 m4 l4">
             <div class="card menu-home darken-1">
                 <div class="card-content cardcontent  white-text">
-                <span class="card-title center">refrigerateur</span>
+                <span class="card-title center">Réfrigerateur</span>
                 </div>
                 <div class="card-action">
-                <a href="fridge" class="waves-effect waves-light btn">Acceder</a>
+                <a href="fridge" class="waves-effect waves-light btn">Accéder</a>
                 </div>
             </div>
             </div>

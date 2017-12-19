@@ -1,7 +1,7 @@
 @mixin black {
 	color: black !important;
 }
-
+$orange = #FF7043;
 html{
     background-color: #EEEEEE;
 }
@@ -11,7 +11,7 @@ html{
     display: flex;
     justify-content: center;
     align-content: center;
-    background-color:#FF7043;
+    background-color: $orange;
     top:0px;
     position: sticky;
     z-index: 2;
@@ -20,7 +20,7 @@ html{
     color:black;
 }
 nav{
-    background-color: #FF7043 !important;
+    background-color: $orange !important;
     color:black !important;
     top:50px;
     position: sticky;

@@ -2,16 +2,24 @@
 
 // Chargement des classes
 require_once('model/PostProducts.php');
+require_once('model/PostRecipe.php');
 /*require_once('model/CommentsRecipe.php');*/
 
-function listProducts()
+function listRecipes()
 {
-    $postProducts = new \Ksr\MyFridgeFood\Model\PostProducts();
-    $posts = $postProducts->getProducts();
+    $postRecipes= new \Ksr\MyFridgeFood\Model\PostRecipe();
+    $posts = $postRecipes->getRecipes();
 
-    require('view/ProductsView.php');
+    require('view/listRecipes.php');
 }
 
+function viewRecipe($id)
+{
+    $postRecipe = new \Ksr\MyFridgeFood\Model\PostRecipe();
+    $post = $postRecipe->getRecipe($id);
+    
+    require('view/RecipeView.php');
+}
 function listComments()
 {
     $pdo = new Ksr\Model\Bdd();
