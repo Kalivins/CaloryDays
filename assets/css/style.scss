@@ -1,7 +1,7 @@
 @mixin black {
 	color: black !important;
 }
-$orange = #FF7043;
+$orange : #FF7043;
 html{
     background-color: #EEEEEE;
 }
@@ -75,6 +75,11 @@ nav a{
 .actioncard
 {
     color:#FF7043 !important;
+}
+#products 
+{
+    height: 400px;
+    overflow: scroll;
 }
 
 .search{

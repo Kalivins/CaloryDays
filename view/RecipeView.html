@@ -11,7 +11,7 @@
                 <p>Ingrédients: </p>
              <ul>
                 {% for ingredients in ingredient %}
-                 <li><a href="product/{{ ingredients.id }}">{{ ingredients.product_name }}</a></li>
+                 <li><a href="{{ locate }}/MyFridgeFood/product/{{ ingredients.id }}">{{ ingredients.product_name }}</a></li>
                  {% endfor %}
              </ul>
               <p>{{ recipe_user.preparation }}</p>

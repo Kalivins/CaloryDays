@@ -61,6 +61,33 @@ $router->map( 'POST|GET', '/recipe/[i:id]', function() {
             echo $template->render($params);
 });
 
+$router->map( 'GET', '/energy', function() {
+    
+            global $twig;
+            global $locate;
+    
+            $products = listProducts();
+            $params = [
+                "locate" => $locate,
+                "products" => $products,
+                
+            ];
+            var_dump($_POST);
+            $template = $twig->load('energy.html');
+            echo $template->render($params);
+});
+
+$router->map( 'POST', '/energy/letter', function() {
+    
+            global $twig;
+            global $locate;
+            
+            $products = searchProductsByLetter($_POST['lettre']);
+    
+            echo json_encode($products);
+            
+});
+
 $match = $router->match();
 
 

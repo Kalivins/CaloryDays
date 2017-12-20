@@ -22,6 +22,31 @@ function viewRecipe($id)
     
     return $post;
 }
+function listProducts()
+{
+    $postProducts= new \Ksr\MyFridgeFood\Model\PostProducts();
+    $posts = $postProducts->getProducts();
+    
+    return $posts;
+
+}
+
+function searchProductsByLetter($letter)
+{
+    $postSearch = new \Ksr\MyFridgeFood\Model\PostProducts();
+    $post = $postSearch->getByLetter($letter);
+    
+    return $post;
+}
+
+function viewProduct($id)
+{
+    $postProduct = new \Ksr\MyFridgeFood\Model\PostProducts();
+    $post = $postProduct->getProduct($id);
+    
+    return $post;
+}
+
 function listComments()
 {
     $pdo = new Ksr\Model\Bdd();
@@ -45,4 +70,4 @@ function addComment($postId, $author, $comment)
     else {
         header('Location: '.$locate.'MyFridgeFood/addcomment/'.$postId);
     }
-} 
+}
