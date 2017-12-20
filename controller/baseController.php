@@ -3,6 +3,7 @@
 // Chargement des classes
 require_once('model/PostProducts.php');
 require_once('model/PostRecipe.php');
+require_once ('model/Connexion.php');
 /*require_once('model/CommentsRecipe.php');*/
 
 
@@ -70,4 +71,14 @@ function addComment($postId, $author, $comment)
     else {
         header('Location: '.$locate.'MyFridgeFood/addcomment/'.$postId);
     }
+}
+function connecting()
+{
+    $connect = new \Ksr\MyFridgeFood\Model\Connexion();
+    return $connect->connexion();
+}
+function deconnexion()
+{
+    $connect = new \Ksr\MyFridgeFood\Model\Connexion();
+    return $connect->deconnexion();
 }

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('controller/baseController.php');
 require('vendor/autoload.php');
 // La variable locate qui défini le "nom de domaine" du site
@@ -17,7 +18,7 @@ $router->map( 'GET', '/', function() {
     
             header('Location: '.$locate.'/MyFridgeFood/home');
 });
-$router->map( 'GET', '/home', function() {
+$router->map( 'POST|GET', '/home', function() {
     
             global $twig;
             global $locate;
@@ -25,9 +26,12 @@ $router->map( 'GET', '/home', function() {
             $recipes[] = listRecipes();
             $params = [
                 "locate" => $locate,
-                "recipes" => $recipes
+                "recipes" => $recipes,
+                "session" => $_SESSION
                 
             ];
+            var_dump($_SESSION);
+            var_dump($_POST);
             $template = $twig->load('home.html');
             echo $template->render($params);
 });
@@ -77,6 +81,16 @@ $router->map( 'GET', '/energy', function() {
             echo $template->render($params);
 });
 
+$router->map( 'POST|GET', '/deconnexion', function() {
+
+    global $twig;
+    global $locate;
+
+    $template = $twig->load('deconnexion.html');
+    echo $template->render();
+    deconnexion();
+});
+
 $router->map( 'POST', '/energy/letter', function() {
     
             global $twig;
@@ -86,6 +100,16 @@ $router->map( 'POST', '/energy/letter', function() {
     
             echo json_encode($products);
             
+});
+
+$router->map( 'POST', '/connexion', function() {
+
+    global $twig;
+    global $locate;
+
+    connecting();
+    header('Location: http://localhost/MyFridgeFood/home');
+
 });
 
 $match = $router->match();

@@ -28,12 +28,21 @@ class PostProducts extends Bdd
     {
         $pdo = $this->dbConnect();
         $letter = $letter.'%';
-        $req = $pdo->prepare('SELECT product_name, brands, image_url, image_small_url, energy_100g FROM food WHERE product_name LIKE :letter LIMIT 40');
+        $req = $pdo->prepare('SELECT product_name, brands, main_category_fr, image_url, image_small_url, energy_100g FROM food WHERE product_name LIKE :letter ORDER BY main_category_fr DESC LIMIT 40');
         $req->bindParam(':letter', $letter);
         $req->execute();
         $posts = $req->fetchAll();
         
         foreach($posts as $product){
+            if($product['main_category_fr'] == ""){
+                $product['main_category_fr'] = "Hors Catégorie";
+            }
+            if($product['energy_100g'] == ""){
+                $product['energy_100g'] = 0;
+            }
+            if($product['image_small_url'] == ""){
+                $product['image_small_url'] = "http://localhost/MyFridgeFood/assets/img/void.png";
+            }
             $post[] = array_unique($product);
         }
         return $post;

@@ -16,38 +16,82 @@
     </div>
     {% block landing %} {% endblock %}
     <nav>
-<div class="nav-wrapper">
-    <ul id="nav-mobil" class="left">
-        <li><a href="#" data-activates="slide-out" class="collapse waves-effect"><i class="fa fa-bars" aria-hidden="true"></i></a></li> 
+        <div class="nav-wrapper">
+            <ul id="nav-mobil" class="left">
+                <li><a href="#" data-activates="slide-out" class="collapse waves-effect"><i class="fa fa-bars" aria-hidden="true"></i></a></li>
 
-            <li><a href="{{ locate }}/MyFridgeFood/home" class="waves-effect"><i class="fa fa-home" aria-hidden="true"></i><span class="hide-on-med-and-down"> Accueil</span></a></li>
-        </ul>
-        <ul id="nav-mobile" class="right">
-            <li><a href="#inscription" class="waves-effect modal-trigger"><i class="fa fa-sign-in" aria-hidden="true"></i> <span class="hide-on-med-and-down">Inscription</span></a></li>
-            <li><a href="#connexion" class="waves-effect modal-trigger"><i class="fa fa-user" aria-hidden="true"></i> <span class="hide-on-med-and-down">Connexion</span></a></li>
-        </ul>
+                <li><a href="home" class="waves-effect"><i class="fa fa-home" aria-hidden="true"></i><span class="hide-on-med-and-down"> Accueil</span></a></li>
+            </ul>
+            {% if session.result != true %}
+            <ul id="nav-mobile" class="right">
+                <li><a href="#inscription" class="waves-effect modal-trigger"><i class="fa fa-sign-in" aria-hidden="true"></i> <span class="hide-on-med-and-down">Inscription</span></a></li>
+                <li><a href="#connexion" class="waves-effect modal-trigger"><i class="fa fa-user" aria-hidden="true"></i> <span class="hide-on-med-and-down">Connexion</span></a></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="connexion" class="modal">
+        <div class="modal-content">
+            <h4>Connexion</h4>
+            <p>
+            <form method="post" action="{{ locate }}/MyFridgeFood/connexion">
+                <input type="text" placeholder="Email" name="mail">
+                <input type="password" placeholder="mot de passe" name="mdp">
+                <input type="submit" class="btn">
+            </form>
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+        </div>
     </div>
-</nav>
-  <div id="connexion" class="modal">
-    <div class="modal-content">
-      <h4>Connexion</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
-    </div>
-  </div>
 
-  <div id="inscription" class="modal">
-    <div class="modal-content">
-      <h4>Inscription</h4>
-      <p>A bunch of text</p>
+    <div id="inscription" class="modal">
+        <div class="modal-content">
+            <h4>Inscription</h4>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+        </div>
     </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+    {% else %}
+    <ul id="nav-mobile" class="right">
+        <li><a href="#profil" class="waves-effect modal-trigger"><i class="fa fa-user" aria-hidden="true"></i> <span class="hide-on-med-and-down">Profil</span></a></li>
+        <li><a href="deconnexion" class="waves-effect modal-trigger"><i class="fa fa-sign-in" aria-hidden="true"></i> <span class="hide-on-med-and-down">Déconnexion</span></a></li>
+    </ul>
     </div>
-  </div>
-   
+    </nav>
+
+    <div id="profil" class="modal">
+        <div class="modal-content">
+            <h4>Profil</h4>
+            <img src="" alt="">
+            <p>Nom: {{ session.nom }}</p>
+            <p>Prenom: {{ session.prenom }}</p>
+            <p>Age :{{ session.age }}</p>
+            <p>email : {{ session.mail }}</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+        </div>
+    </div>
+    <div id="connexion" class="modal">
+        <div class="modal-content">
+            <h4>Connexion</h4>
+            <p>
+            <form method="post" action="home">
+                <input type="text" placeholder="Email" name="mail">
+                <input type="password" placeholder="mot de passe" name="mdp">
+                <input type="submit" class="btn">
+            </form>
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+        </div>
+    </div>
+    {% endif %}
+
     {% block content %} {% endblock content %}
 
 <script src="{{locate}}/MyFridgeFood/assets/js/jquery.js"></script>

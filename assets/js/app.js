@@ -10,6 +10,7 @@ $(document).ready(function(){
         alphabet(letter);
     });
     });
+
 function alphabet(lettre){
     $.ajax({
         url: "http://localhost/MyFridgeFood/energy/letter",
@@ -25,18 +26,7 @@ function alphabet(lettre){
     
             data.forEach(function(index){
                 console.log(index);
-                $('.searching-panel').append('<div class="col s12 m4 l3"> <div class="card products"> <div class="card-image"><span class="card-title title-card">'+index.product_name+'</span></div><div class="card-content"></div></div></div>');
-                if(index.image_small_url == ""){
-                    $('.card-image').append('<img src="http://localhost/MyFridgeFood/assets/img/void.png" width="220" height="180" alt="image de '+index.product_name+'">');
-                } else {
-                    $('.card-image').append('<img src="'+index.image_small_url+'" width="200"         height="180" alt="image de '+index.product_name+'">');
-                }
-                if(index.main_category_fr != ""){
-                    $('.card-content').append('<p>Catégorie : '+index.main_category_fr+'<br>');
-                }
-                if(index.energy_100g != ""){
-                    $('.card-content').append('Calorie : {{ product.energy_100g }}</p>');
-                }
+                $('.searching-panel').append('<div class="col s12 m4 l3"> <div class="card products"> <div class="card-image"><img src="'+index.image_small_url+'" width="200" height="250" alt="image de '+index.product_name+'"><span class="card-title title-card">'+index.product_name+'</span></div><div class="card-content"><p><span class="categorie-label">Catégorie : '+index.main_category_fr+'</span><br><span class="calorie-label">Calorie :'+index.energy_100g+'</span></p></div></div></div>');
             });
                                                                     
         });
