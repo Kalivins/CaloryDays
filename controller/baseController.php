@@ -39,7 +39,13 @@ function searchProductsByLetter($letter)
     
     return $post;
 }
+function autoCompleteSearch($search)
+{
+    $postSearch = new \Ksr\MyFridgeFood\Model\PostProducts();
+    $post = $postSearch->getBySearch($search);
 
+    return $post;
+}
 function viewProduct($id)
 {
     $postProduct = new \Ksr\MyFridgeFood\Model\PostProducts();

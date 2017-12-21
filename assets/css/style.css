@@ -1,2 +1,181 @@
-html{background-color:#EEEEEE}.logo{height:50px;display:flex;justify-content:center;align-content:center;background-color:#FF7043;top:0px;position:sticky;z-index:2}.titre-logo{color:black}nav{background-color:#FF7043 !important;color:black !important;top:50px;position:sticky;z-index:2;margin-bottom:20px}nav a{color:#263238 !important}.description{height:100px;background-color:#ECEFF1;color:#33691E;text-align:center;padding-top:40px;font-size:20px}.menu-home{background-color:#80CBC4 !important;color:black !important}.menu-home p{color:black !important}.menu-home a{color:black !important;text-align:center}.card-action{display:flex;justify-content:center}.menu-home .card-title{color:#263238}.title-card{background-color:#000;opacity:0.6;width:100%;height:132px}.cardcontent{height:100px !important}.card-content{height:100px}.actioncard{color:#FF7043 !important}#products{height:400px;overflow:scroll}.search{position:sticky;top:50px;width:1000px;z-index:3;display:flex;justify-content:center}.search1{width:100px;color:black !important}.search2{border-bottom:1px solid black !important}.modal-1{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:#000;background-color:rgba(0,0,0,0.4)}.modal-content-1{background-color:#fefefe;margin:15% auto;padding:20px;border:1px solid #888;width:80%}.close{color:#aaa;float:right;font-size:28px;font-weight:bold}.close:hover,.close:focus{color:black;text-decoration:none;cursor:pointer}
+html {
+  background-color: #EEEEEE; }
+
+.logo {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: #FF7043;
+  top: 0px;
+  position: sticky;
+  z-index: 2; }
+
+.titre-logo {
+  color: black; }
+
+nav {
+  background-color: #FF7043 !important;
+  color: black !important;
+  top: 50px;
+  position: sticky;
+  z-index: 2;
+  margin-bottom: 20px; }
+
+nav a {
+  color: #263238 !important; }
+
+.description {
+  height: 100px;
+  background-color: #ECEFF1;
+  color: #33691E;
+  text-align: center;
+  padding-top: 40px;
+  font-size: 20px; }
+
+.menu-home {
+  background-color: #80CBC4 !important;
+  color: black !important; }
+
+.menu-home p {
+  color: black !important; }
+
+.menu-home a {
+  color: black !important;
+  text-align: center; }
+
+.card-action {
+  display: flex;
+  justify-content: center; }
+
+.menu-home .card-title {
+  color: #263238; }
+
+.title-card {
+  background-color: black;
+  opacity: 0.6;
+  width: 100%;
+  height: 132px; }
+
+.cardcontent {
+  height: 100px !important; }
+
+.card-content {
+  height: 100px; }
+
+.actioncard {
+  color: #FF7043 !important; }
+
+#products {
+  height: 300px;
+  overflow: hidden;
+  overflow-y: scroll; }
+
+.search {
+  position: sticky;
+  top: 50px;
+  width: 1000px;
+  z-index: 3;
+  display: flex;
+  justify-content: center; }
+
+.search1 {
+  width: 100px;
+  color: black !important; }
+
+.search2 {
+  border-bottom: 1px solid black !important; }
+
+/* The Modal (background) */
+.modal-1 {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 9999;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */ }
+
+/* Modal Content/Box */
+.modal-content-1 {
+  background-color: #fefefe;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  /* Could be more or less, depending on screen size */ }
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold; }
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer; }
+
+.title_c {
+  padding: 5px !important;
+  font-size: 14px !important; }
+
+.card_c {
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%; }
+
+.content-energy {
+  height: 100%;
+  display: flex;
+  align-content: center; }
+
+.cat {
+  font-size: 15px;
+  position: absolute;
+  background-color: #FF7043;
+  color: black;
+  top: 0;
+  left: 0; }
+
+.cal {
+  font-size: 15px;
+  position: absolute;
+  top: 25px;
+  right: 0;
+  background-color: white;
+  color: black; }
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap; }
+
+.pag form {
+  display: flex;
+  justify-content: center; }
+
+.lettre {
+  border: 0px solid transparent;
+  color: #444;
+  display: inline-block;
+  font-size: 1.2rem;
+  padding: 0 10px;
+  line-height: 30px; }
+
+.row {
+  margin-bottom: 0px !important; }
+
 /*# sourceMappingURL=style.css.map */

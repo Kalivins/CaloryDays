@@ -30,8 +30,6 @@ $router->map( 'POST|GET', '/home', function() {
                 "session" => $_SESSION
                 
             ];
-            var_dump($_SESSION);
-            var_dump($_POST);
             $template = $twig->load('home.html');
             echo $template->render($params);
 });
@@ -43,6 +41,7 @@ $router->map( 'GET', '/add_recipe', function() {
     
             $params = [
                 "locate" => $locate,
+                "session" => $_SESSION
                 
             ];
             $template = $twig->load('add_recipe.html');
@@ -58,7 +57,8 @@ $router->map( 'POST|GET', '/recipe/[i:id]', function() {
             $params = [
                 "locate" => $locate,
                 "recipe_user" => $recipe['recipe_user'],
-                "ingredient" => $recipe['ingredient']
+                "ingredient" => $recipe['ingredient'],
+                "session" => $_SESSION
                 
             ];
             $template = $twig->load('recipeView.html');
@@ -74,9 +74,9 @@ $router->map( 'GET', '/energy', function() {
             $params = [
                 "locate" => $locate,
                 "products" => $products,
+                "session" => $_SESSION
                 
             ];
-            var_dump($_POST);
             $template = $twig->load('energy.html');
             echo $template->render($params);
 });
@@ -100,6 +100,17 @@ $router->map( 'POST', '/energy/letter', function() {
     
             echo json_encode($products);
             
+});
+
+$router->map( 'POST', '/search', function() {
+
+    global $twig;
+    global $locate;
+
+    $products = AutoCompleteSearch($_POST['search']);
+
+    echo json_encode($products);
+
 });
 
 $router->map( 'POST', '/connexion', function() {

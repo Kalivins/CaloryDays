@@ -3,79 +3,72 @@
 <title>Calculer la calorie des aliments !</title>
 {% endblock %}
 {% block content %}
- <div class="container">
+ <div class="container-fluid">
+     <div class="row pag">
+         <form class="filters col s12 m8 l8" action="{{ locate }}/MyFridgeFood/energy/letter" method="post">
+             <ul class="pagination">
+                 <li class="active">
+                     <button type="submit" name="letter" class="lettre" value="a">A</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="b">B</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="c">C</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="d">D</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="e">E</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="f">F</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="g">G</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="h">H</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="i">I</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="j">J</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="k">K</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="l">L</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="m">M</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="n">N</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="o">O</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="p">P</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="q">Q</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="r">R</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="s">S</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="t">T</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="u">U</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="v">V</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="w">W</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="x">X</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="y">Y</button></li>
+                 <li><button type="submit" name="letter" class="lettre waves-effect" value="z">Z</button></li>
+             </ul>
+         </form>
+     </div>
+     <div class="row">
+         <div class="col s12 l8">
          <div id="products">
         <div class="searching-panel row">
-           {% for product in products %}
-           {% if product.energy_100g != "" %}
-            <div class="col s12 m4 l3">
-              <div class="card products">
-                <div class="card-image">
-                {% if product.image_url == "" %}
-                <img src="{{ locate }}/MyFridgeFood/assets/img/void.png" width="200" height="250" alt="image de {{ product.product_name }}">
-                 {% endif %}
-                 {% if product.image_small_url != "" %}
-                 <img src="{{ product.image_small_url }}" width="200"         height="250" alt="image de {{ product.product_name }}">
-                 {% endif %}
-                  <span class="card-title title-card">{{                       product.product_name }}</span>
-                </div>
-                <div class="card-content">
-                 {% if product.main_category_fr != "" %}
-                  <p>Catégorie : {{ product.main_category_fr }}<br>
-                     {% endif %}
-                 {% if product.energy_100g != "" %}
-                      Calorie : {{ product.energy_100g }}</p>
-                 {% endif %}
                 </div>
               </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
      </div>
         <div class="row">
-          <form class="alpha" action="{{ locate }}/MyFridgeFood/energy/letter" method="post">
-           <ul class="pagination">
-            <li class="active">
-            <button type="submit" name="letter" class="lettre" value="a">A</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="b">B</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="c">C</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="d">D</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="e">E</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="f">F</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="g">G</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="h">H</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="i">I</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="j">J</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="k">K</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="l">L</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="m">M</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="n">N</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="o">O</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="p">P</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="q">Q</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="r">R</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="s">S</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="t">T</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="u">U</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="v">V</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="w">W</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="x">X</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="y">Y</button></li>
-            <li class="waves-effect"><button type="submit" name="letter" class="lettre" value="z">Z</button></li>
-           </ul>
-           </form>
            <form action="{{ locate }}/MyFridgeFood/energy/category" method="post">
                <ul>
                    
                </ul>
            </form>
-           <div class="container search">
+           <div class="search">
+               <form class="filters" action="{{ locate }}/MyFridgeFood/search" method="post">
             <div class="input-field l12">
-            <input type="text" id="autocomplete-input" class="search2 autocomplete">
-            <label for="autocomplete-input" class="search1">Recherche</label>
+                <i class="material-icons prefix">search</i>
+            <input type="search" maxlength="80" size="80" name="search" id="autocomplete-input" class="autocomplete searched">
+                <label for="autocomplete-input">Rechercher un produit</label>
         </div>
+               </form>
+               <button type="button" class="reset">Reset</button>
             </div>
     </div>
+     </div>
 </div>
+{% endblock %}
+{% block footer %}
+<script type="text/javascript">
+    $('.reset').click(function () {
+        alphabet("default");
+    });
+    alphabet("default");
+</script>
 {% endblock %}

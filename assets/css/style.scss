@@ -1,131 +1,156 @@
 @mixin black {
-	color: black !important;
+    color: black !important;
 }
-$orange : #FF7043;
-html{
+
+$orange: #FF7043;
+html {
     background-color: #EEEEEE;
 }
 
-.logo{
+.logo {
     height: 50px;
     display: flex;
     justify-content: center;
     align-content: center;
     background-color: $orange;
-    top:0px;
+    top: 0px;
     position: sticky;
     z-index: 2;
 }
-.titre-logo{
-    color:black;
+
+.titre-logo {
+    color: black;
 }
-nav{
+
+nav {
     background-color: $orange !important;
-    color:black !important;
-    top:50px;
+    color: black !important;
+    top: 50px;
     position: sticky;
     z-index: 2;
     margin-bottom: 20px;
 }
-nav a{
-    color:#263238 !important;
+
+nav a {
+    color: #263238 !important;
 }
-.description
-{
+
+.description {
     height: 100px;
-    background-color:#ECEFF1;
-    color:#33691E;
+    background-color: #ECEFF1;
+    color: #33691E;
     text-align: center;
     padding-top: 40px;
-    font-size: 20px; 
+    font-size: 20px;
 }
-.menu-home{
+
+.menu-home {
     background-color: #80CBC4 !important;
     @include black();
 }
-.menu-home p{
+
+.menu-home p {
     @include black();
 }
-.menu-home a{
+
+.menu-home a {
     @include black();
     text-align: center;
 }
-.card-action
-{
+
+.card-action {
     display: flex;
     justify-content: center;
 }
-.menu-home .card-title{
-    color:#263238;
+
+.menu-home .card-title {
+    color: #263238;
 }
-.title-card{
-    background-color: rgb(0,0,0);
+
+.title-card {
+    background-color: rgb(0, 0, 0);
     opacity: 0.6;
     width: 100%;
     height: 132px;
 }
-.cardcontent
-{
+
+.cardcontent {
     height: 100px !important;
 }
-.card-content
-{
+
+.card-content {
     height: 100px;
 }
-.actioncard
-{
-    color:#FF7043 !important;
-}
-#products 
-{
-    height: 400px;
-    overflow: scroll;
+
+.actioncard {
+    color: #FF7043 !important;
 }
 
-.search{
+#products {
+    height: 300px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.search {
     position: sticky;
-    top:50px;
+    top: 50px;
     width: 1000px;
     z-index: 3;
     display: flex;
     justify-content: center;
 }
-.search1
-{
+
+.search1 {
     width: 100px;
     @include black();
 }
-.search2
-{
+
+.search2 {
     border-bottom: 1px solid black !important;
 }
 
 // Modal
 
 /* The Modal (background) */
+
 .modal-1 {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 9999; /* Sit on top */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 9999;
+    /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 }
+
 
 /* Modal Content/Box */
+
 .modal-content-1 {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto;
+    /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%;
+    /* Could be more or less, depending on screen size */
 }
 
+
 /* The Close Button */
+
 .close {
     color: #aaa;
     float: right;
@@ -138,4 +163,64 @@ nav a{
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+// Page energy
+.title_c {
+    padding: 5px !important;
+    font-size: 14px !important;
+}
+
+.card_c {
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+
+// Voir les calorie et categorie
+.content-energy {
+    height: 100%;
+    display: flex;
+    align-content: center;
+}
+
+.cat {
+    font-size: 15px;
+    position: absolute;
+    background-color: #FF7043;
+    color: black;
+    top: 0;
+    left: 0;
+}
+
+.cal {
+    font-size: 15px;
+    position: absolute;
+    top: 25px;
+    right: 0;
+    background-color: white;
+    color: black;
+}
+
+// Pagination
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pag form {
+    display: flex;
+    justify-content: center;
+}
+
+.lettre {
+    border: 0px solid transparent;
+    color: #444;
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    line-height: 30px;
+}
+
+.row {
+    margin-bottom: 0px !important;
 }
