@@ -1,4 +1,9 @@
 $(document).ready(function(){
+
+    var y = 0;
+    var listnames = [];
+    var listcalories = [];
+
     $('.modal').modal();
     $('.filters').submit(function(e) {
             e.preventDefault();
@@ -15,6 +20,7 @@ $(document).ready(function(){
         var search = $('.searched').val();
         searchingProduct(search);
     });
+
     });
 
 
@@ -37,7 +43,7 @@ function alphabet(lettre){
                 if(index.calorie_100g == "Non communiqué"){
                     Kcal = "";
                 }
-                $('.searching-panel').append('<div class="col s6 m4 l3"><div class="card products"><div class="card-image produit"><img src="' + index.image_small_url + '" height="150" alt="image de ' + index.product_name + '"><span class="card-title card_c title_c">' + index.product_name + '</span><div class="card-title card_c content-energy"><p class="cat z-depth-3">' + index.main_category_fr + '</p><p class="cal z-depth-3">' + index.calorie_100g + ' ' + Kcal + '</p><span class="card-title card_c title_c">' + index.product_name + '</span></div><div class="hover-card"><button class="btn"> <i class="large material-icons icon-produit">add_circle_outline</i></button></div></div></div>');
+                $('.searching-panel').append('<div class="col s6 m4 l3"><div class="card products"><div class="card-image produit"><img src="' + index.image_small_url + '" height="150" alt="image de ' + index.product_name + '"><span class="card-title card_c title_c">' + index.product_name + '</span><div class="card-title card_c content-energy"><p class="cat z-depth-3">' + index.main_category_fr + '</p><p class="cal z-depth-3">' + index.calorie_100g + ' ' + Kcal + '</p><span class="card-title card_c title_c">' + index.product_name + '</span></div><div class="hover-card"><button type="button" data-calorie="'+index.calorie_100g+'" data-name="'+index.product_name+'" class="addList btn"> <i class="large material-icons icon-produit">add_circle_outline</i></button></div></div></div>');
             });
                                                                     
         });
@@ -70,7 +76,7 @@ function searchingProduct(search) {
                         Kcal = "";
                     }
 
-                    $('.searching-panel').append('<div class="col s6 m4 l3"><div class="card products"><div class="card-image produit"><img src="' + index.image_small_url + '" height="150" alt="image de ' + index.product_name + '"><span class="card-title card_c title_c">' + index.product_name + '</span><div class="card-title card_c content-energy"><p class="cat z-depth-3">' + index.main_category_fr + '</p><p class="cal z-depth-3">' + index.calorie_100g + ' ' + Kcal + '</p><span class="card-title card_c title_c">' + index.product_name + '</span></div><div class="hover-card"><button class="btn"> <i class="large material-icons icon-produit">add_circle_outline</i></button></div></div></div>');
+                    $('.searching-panel').append('<div class="col s6 m4 l3"><div class="card products"><div class="card-image produit"><img src="' + index.image_small_url + '" height="150" alt="image de ' + index.product_name + '"><span class="card-title card_c title_c">' + index.product_name + '</span><div class="card-title card_c content-energy"><p class="cat z-depth-3">' + index.main_category_fr + '</p><p class="cal z-depth-3">' + index.calorie_100g + ' ' + Kcal + '</p><span class="card-title card_c title_c">' + index.product_name + '</span></div><div class="hover-card"><button type="button" data-calorie="'+index.calorie_100g+'" data-name="'+index.product_name+'" class="addList btn"> <i class="large material-icons icon-produit">add_circle_outline</i></button></div></div></div>');
                 });
                 $('.autocomplete').autocomplete({
                     data: complete,
@@ -322,5 +328,13 @@ function caloriePie(calorie){
         }
     });
 }
+$('.addList').click(function() {
 
+    listnames[y] = $(this).attr('data-name').val();
+    listcalories[y] = $(this).attr('data-calorie').val();
+    y++;
+
+    console.log(listnames);
+    console.log(listcalories);
+});
 
