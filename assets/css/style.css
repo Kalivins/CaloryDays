@@ -6,7 +6,7 @@ html {
   display: flex;
   justify-content: center;
   align-content: center;
-  background-color: #FF7043;
+  background-color: #ff7043;
   top: 0px;
   position: sticky;
   z-index: 2; }
@@ -15,7 +15,7 @@ html {
   color: black; }
 
 nav {
-  background-color: #FF7043 !important;
+  background-color: #ff7043 !important;
   color: black !important;
   top: 50px;
   position: sticky;
@@ -70,6 +70,37 @@ nav a {
   height: 300px;
   overflow: hidden;
   overflow-y: scroll; }
+
+.produit:hover .hover-card {
+  display: flex; }
+
+.produit:hover .hover-card button {
+  background-color: rgba(255, 204, 128, 0.6); }
+
+.hover-card button {
+  color: black;
+  background-color: transparent;
+  border: 1px solid transparent;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.hover-card button i {
+  font-size: 50px; }
+
+.hover-card {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  width: 100%;
+  background-color: rgba(255, 112, 65, 0.3);
+  height: 100%;
+  -webkit-transition: all 2s linear;
+  transition: all 2s linear; }
 
 .search {
   position: sticky;

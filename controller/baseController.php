@@ -3,7 +3,7 @@
 // Chargement des classes
 require_once('model/PostProducts.php');
 require_once('model/PostRecipe.php');
-require_once ('model/Connexion.php');
+require_once ('model/User.php');
 /*require_once('model/CommentsRecipe.php');*/
 
 
@@ -80,11 +80,11 @@ function addComment($postId, $author, $comment)
 }
 function connecting()
 {
-    $connect = new \Ksr\MyFridgeFood\Model\Connexion();
+    $connect = new \Ksr\MyFridgeFood\Model\User();
     return $connect->connexion();
 }
 function deconnexion()
 {
-    $connect = new \Ksr\MyFridgeFood\Model\Connexion();
+    $connect = new \Ksr\MyFridgeFood\Model\User();
     return $connect->deconnexion();
 }

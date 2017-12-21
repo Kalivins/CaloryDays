@@ -3,7 +3,7 @@ namespace Ksr\MyFridgeFood\Model;
 
 require_once("model/BDD.php");
 
-class Connexion extends Bdd
+class User extends Bdd
 {
     public function connexion()
     {
@@ -19,7 +19,7 @@ class Connexion extends Bdd
                     $_SESSION['mail'] = $user['email'];
                     $_SESSION['prenom'] = $user['prenom'];
                     $_SESSION['nom'] = $user['nom'];
-                    $_SESSION['date_naissance'] = $user['date_naissance'];
+                    $_SESSION['age'] = $this->age($user['date_naissance']);
                     $_SESSION['result'] = true;
                     break;
                 } else {
@@ -30,6 +30,14 @@ class Connexion extends Bdd
             return 'Veuillez remplir les champs';
         }
     }
+    public function age($date)
+    {
+        $age = date('Y') - date('Y', strtotime($date));
+	if (date('md') < date('md', strtotime($date))) {
+	    return $age - 1;
+        }
+        return $age;
+        }
 
     public function deconnexion()
     {
