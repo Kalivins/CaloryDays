@@ -88,3 +88,8 @@ function deconnexion()
     $connect = new \Ksr\MyFridgeFood\Model\User();
     return $connect->deconnexion();
 }
+function inscription()
+{
+    $register = new \Ksr\MyFridgeFood\Model\User();
+    return $register->register();
+}

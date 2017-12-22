@@ -86,9 +86,9 @@ $router->map( 'POST|GET', '/deconnexion', function() {
     global $twig;
     global $locate;
 
+    deconnexion();
     $template = $twig->load('deconnexion.html');
     echo $template->render();
-    deconnexion();
 });
 
 $router->map( 'POST', '/energy/letter', function() {
@@ -122,6 +122,15 @@ $router->map( 'POST', '/connexion', function() {
     header('Location: http://localhost/MyFridgeFood/home');
 
 });
+$router->map( 'POST', '/register', function() {
+    
+        global $twig;
+        global $locate;
+    
+        inscription();
+        header('Location: http://localhost/MyFridgeFood/home');
+    
+    });
 
 $match = $router->match();
 

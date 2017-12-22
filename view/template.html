@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 {% block head %} {% endblock head %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ locate }}/MyFridgeFood/assets/css/style.css">
     <link rel="stylesheet" href="{{ locate }}/MyFridgeFood/assets/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ locate }}/MyFridgeFood/assets/css/materialize-stepper.min.css">
     <link rel="stylesheet" href="{{ locate }}/MyFridgeFood/assets/font-awesome/css/font-awesome.min.css">
     <title></title>
 </head>
-    <body>
+
+<body>
     <div class="logo">
         <a href="#" class="titre-logo waves-effect"><img src="{{ locate }}/MyFridgeFood/assets/img/fridge_logo.svg" alt="logo" height="50" width="100"></a>
         <a href="#" class="titre-logo">My Fridge Food</a>
@@ -35,11 +38,11 @@
         <div class="modal-content">
             <h4>Connexion</h4>
             <p>
-            <form method="post" action="{{ locate }}/MyFridgeFood/connexion">
-                <input type="text" placeholder="Email" name="mail">
-                <input type="password" placeholder="mot de passe" name="mdp">
-                <input type="submit" class="btn">
-            </form>
+                <form method="post" action="{{ locate }}/MyFridgeFood/connexion">
+                    <input type="text" placeholder="Email" name="mail">
+                    <input type="password" placeholder="mot de passe" name="mdp">
+                    <input type="submit" class="btn">
+                </form>
             </p>
         </div>
         <div class="modal-footer">
@@ -49,8 +52,102 @@
 
     <div id="inscription" class="modal">
         <div class="modal-content">
-            <h4>Inscription</h4>
-            <p>A bunch of text</p>
+            <div class="section grey lighten-5">
+                <h3 class="light center-align blue-text">FORMULAIRE</h3>
+                <form id="register" method="post" action="{{ locate }}/MyFridgeFood/register">
+                    <ul class="stepper linear">
+
+                        <li class="step active">
+                            <div class="step-title waves-effect waves-dark">Nom</div>
+                            <div class="step-content">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="nom" name="nom" type="text" class="validate" required>
+                                        <label for="nom">Votre nom</label>
+                                    </div>
+                                </div>
+                                <div class="step-actions">
+                                    <button class="waves-effect waves-dark btn next-step">Continue</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="step">
+                            <div class="step-title waves-effect waves-dark">Prénom</div>
+                            <div class="step-content">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="prenom" name="prenom" type="text" class="validate" required>
+                                        <label for="prenom">Votre prénom</label>
+                                    </div>
+                                </div>
+                                <div class="step-actions">
+                                    <button class="waves-effect waves-dark btn next-step">Continue</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="step">
+                            <div class="step-title waves-effect waves-dark">Pseudo</div>
+                            <div class="step-content">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="pseudo" name="pseudo" type="text" class="validate" required>
+                                        <label for="pseudo">Votre pseudo</label>
+                                    </div>
+                                </div>
+                                <div class="step-actions">
+                                    <button class="waves-effect waves-dark btn next-step">Continue</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="step">
+                            <div class="step-title waves-effect waves-dark">Date de naissance</div>
+                            <div class="step-content">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="date_naissance" name="date_naissance" type="text" class="validate date-picker" required>
+                                        <label for="date_naissance">Votre date de naissance</label>
+                                    </div>
+                                </div>
+                                <div class="step-actions">
+                                    <button class="waves-effect waves-dark btn next-step">Continue</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="step">
+                            <div class="step-title waves-effect waves-dark">Email</div>
+                            <div class="step-content">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="email" name="email" type="email" class="validate" required>
+                                        <label for="first_name">Votre email</label>
+                                    </div>
+                                </div>
+                                <div class="step-actions">
+                                    <button class="waves-effect waves-dark btn next-step">Continue</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="step">
+                            <div class="step-title waves-effect waves-dark">Mot de passe</div>
+                            <div class="step-content">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="mdp" name="mdp" type="password" class="validate" required>
+                                        <label for="mdp">Votre mot de passe</label>
+                                    </div>
+                                </div>
+                                <div class="step-actions">
+                                    <button type="submit" class="waves-effect waves-dark btn">Envoyer</button>
+                                    <button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
@@ -81,11 +178,11 @@
         <div class="modal-content">
             <h4>Connexion</h4>
             <p>
-            <form method="post" action="home">
-                <input type="text" placeholder="Email" name="mail">
-                <input type="password" placeholder="mot de passe" name="mdp">
-                <input type="submit" class="btn">
-            </form>
+                <form method="post" action="home">
+                    <input type="text" placeholder="Email" name="mail">
+                    <input type="password" placeholder="mot de passe" name="mdp">
+                    <input type="submit" class="btn">
+                </form>
             </p>
         </div>
         <div class="modal-footer">
@@ -94,28 +191,35 @@
     </div>
     {% endif %}
     <ul id="slide-out" class="side-nav">
-        <li><div class="user-view">
-            <div class="background">
-                <img src="images/office.jpg">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="images/office.jpg">
+                </div>
+                <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+                <a href="#!name"><span class="white-text name">John Doe</span></a>
+                <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
             </div>
-            <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
-            <a href="#!name"><span class="white-text name">John Doe</span></a>
-            <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-        </div></li>
+        </li>
         <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
         <li><a href="#!">Second Link</a></li>
-        <li><div class="divider"></div></li>
+        <li>
+            <div class="divider"></div>
+        </li>
         <li><a class="subheader">Subheader</a></li>
         <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
     </ul>
 
     {% block content %} {% endblock content %}
 
-<script src="{{locate}}/MyFridgeFood/assets/js/jquery.js"></script>
+    <script src="{{locate}}/MyFridgeFood/assets/js/jquery.js"></script>
     <script src="{{locate}}/MyFridgeFood/assets/js/materialize.min.js"></script>
+    <script src="{{locate}}/MyFridgeFood/assets/js/jquery.validate.min.js"></script>
+    <script src="{{locate}}/MyFridgeFood/assets/js/materialize-stepper.min.js"></script>
     <script src="{{locate}}/MyFridgeFood/assets/js/d3.min.js"></script>
     <script src="{{locate}}/MyFridgeFood/assets/js/d3pie.min.js"></script>
-<script src="{{locate}}/MyFridgeFood/assets/js/app.js"></script>
+    <script src="{{locate}}/MyFridgeFood/assets/js/app.js"></script>
     {% block footer %} {% endblock footer %}
-    </body>
+</body>
+
 </html>
