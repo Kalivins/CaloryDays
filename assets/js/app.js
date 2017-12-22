@@ -245,6 +245,7 @@ function caloriePie(Kcal, besoinK, utile, besoin) {
 }
 function originalPie() {
     $('#graphique').html('');
+    $('#graphique').append('<div id="CalorieChart"></div>');
     var pie = new d3pie("CalorieChart", {
         "header": {
             "title": {
