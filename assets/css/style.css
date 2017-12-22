@@ -77,6 +77,9 @@ nav a {
 .produit:hover .hover-card button {
   background-color: rgba(255, 204, 128, 0.6); }
 
+.hover-card button:active {
+  background-color: #fff; }
+
 .hover-card button {
   color: black;
   background-color: transparent;
@@ -84,7 +87,8 @@ nav a {
   height: 60px;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  z-index: 100; }
 
 .hover-card button i {
   font-size: 50px; }
@@ -98,9 +102,7 @@ nav a {
   top: 0;
   width: 100%;
   background-color: rgba(255, 112, 65, 0.3);
-  height: 100%;
-  -webkit-transition: all 2s linear;
-  transition: all 2s linear; }
+  height: 100%; }
 
 .search {
   position: sticky;
@@ -208,5 +210,36 @@ nav a {
 
 .row {
   margin-bottom: 0px !important; }
+
+.refrigerateur {
+  border: 10px solid #263238;
+  background-color: #FF7043;
+  height: 500px;
+  border-top-right-radius: 5%;
+  border-top-left-radius: 5%;
+  padding-top: 10px;
+  color: #263238; }
+
+.header-ref {
+  padding-top: 10px;
+  text-align: center;
+  margin: 0;
+  border-bottom: 1px solid #263238; }
+
+.element-ref {
+  padding-top: 10px;
+  border-bottom: 1px solid #263238; }
+
+#list_recette {
+  min-height: 100px;
+  background-color: red; }
+
+#list_recette .recette_user {
+  height: 200px;
+  background-color: #ff7043;
+  margin: 5px; }
+
+#list_recette .card-content {
+  color: black !important; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,9 +1,4 @@
 $(document).ready(function(){
-
-    var y = 0;
-    var listnames = [];
-    var listcalories = [];
-
     $('.modal').modal();
     $('.filters').submit(function(e) {
             e.preventDefault();
@@ -18,10 +13,20 @@ $(document).ready(function(){
     });
     $('.autocomplete').keypress(function(e) {
         var search = $('.searched').val();
-        searchingProduct(search);
+        if(search.length >= 3) {
+            searchingProduct(search);
+        }
     });
-
     });
+var listId = [];
+var listNames = [];
+var listCalories = [];
+var x = 0;
+var CalorieUtilise;
+var max;
+var utilise;
+var besoinRestant;
+var CalorieMax = 2700;
 
 
 
@@ -43,8 +48,29 @@ function alphabet(lettre){
                 if(index.calorie_100g == "Non communiqué"){
                     Kcal = "";
                 }
-                $('.searching-panel').append('<div class="col s6 m4 l3"><div class="card products"><div class="card-image produit"><img src="' + index.image_small_url + '" height="150" alt="image de ' + index.product_name + '"><span class="card-title card_c title_c">' + index.product_name + '</span><div class="card-title card_c content-energy"><p class="cat z-depth-3">' + index.main_category_fr + '</p><p class="cal z-depth-3">' + index.calorie_100g + ' ' + Kcal + '</p><span class="card-title card_c title_c">' + index.product_name + '</span></div><div class="hover-card"><button type="button" data-calorie="'+index.calorie_100g+'" data-name="'+index.product_name+'" class="addList btn"> <i class="large material-icons icon-produit">add_circle_outline</i></button></div></div></div>');
+                $('.searching-panel').append('<div id="'+index.id+'" class="col s6 m4 l3"><div class="card product"><div class="card-image produit"><img src="' + index.image_small_url + '" height="150" alt="image de ' + index.product_name + '"><span class="card-title card_c title_c">' + index.product_name + '</span><div class="card-title card_c content-energy"><p class="cat z-depth-3">' + index.main_category_fr + '</p><p class="cal z-depth-3">' + index.calorie_100g + ' ' + Kcal + '</p><span class="card-title card_c title_c">' + index.product_name + '</span></div><div class="hover-card"><button class="adding btn"  type="button" data-id="'+index.id+'" data-calorie="'+index.calorie_100g+'" data-name="'+index.product_name+'"> <i class="large material-icons icon-produit">add_circle_outline</i></button></div></div></div>');
             });
+                $('.adding').bind("click", function (e) {
+                    listId.splice(x, 0, $(this).attr('data-id'));
+                    listNames.splice(x, 0, $(this).attr('data-name'));
+                    var filtre = $(this).attr('data-calorie');
+                    if($(this).attr('data-calorie') == "Non communiqué"){
+                        filtre = 0;
+                        listCalories.splice(x, 0, 0);
+                    } else {
+                        listCalories.splice(x, 0, parseInt($(this).attr('data-calorie')));
+                    }
+                    x++;
+                    $('.article_list').append('<div class="element-ref">'+$(this).attr('data-name')+'<span class="pull-right">'+filtre+' Kcal</span></div>');
+                    CalorieUtilise = listCalories.join(' + ');
+                    CalorieUtilise = eval(CalorieUtilise);
+                    var max = CalorieMax / CalorieMax * 100;
+                    var besoinKcal = CalorieMax - CalorieUtilise;
+                    var utilise = CalorieUtilise / CalorieMax * 100;
+                    var besoinRestant = max - utilise;
+                    caloriePie(CalorieUtilise, besoinKcal, utilise, besoinRestant);
+                   console.log(utilise);
+                });
                                                                     
         });
             $('.searching-panel').fadeIn(400, "linear");
@@ -76,13 +102,35 @@ function searchingProduct(search) {
                         Kcal = "";
                     }
 
-                    $('.searching-panel').append('<div class="col s6 m4 l3"><div class="card products"><div class="card-image produit"><img src="' + index.image_small_url + '" height="150" alt="image de ' + index.product_name + '"><span class="card-title card_c title_c">' + index.product_name + '</span><div class="card-title card_c content-energy"><p class="cat z-depth-3">' + index.main_category_fr + '</p><p class="cal z-depth-3">' + index.calorie_100g + ' ' + Kcal + '</p><span class="card-title card_c title_c">' + index.product_name + '</span></div><div class="hover-card"><button type="button" data-calorie="'+index.calorie_100g+'" data-name="'+index.product_name+'" class="addList btn"> <i class="large material-icons icon-produit">add_circle_outline</i></button></div></div></div>');
+                    $('.searching-panel').append('<div id="'+index.id+'" class="item col s6 m4 l3"><div class="card product"><div class="card-image produit"><img src="' + index.image_small_url + '" height="150" alt="image de ' + index.product_name + '"><span class="card-title card_c title_c">' + index.product_name + '</span><div class="card-title card_c content-energy"><p class="cat z-depth-3">' + index.main_category_fr + '</p><p class="cal z-depth-3">' + index.calorie_100g + ' ' + Kcal + '</p><span class="card-title card_c title_c">' + index.product_name + '</span></div><div class="hover-card"><button class="adding btn"  type="button" data-id="'+index.id+'" data-calorie="'+index.calorie_100g+'" data-name="'+index.product_name+'"> <i class="large material-icons icon-produit">add_circle_outline</i></button></div></div></div>');
+                });
+                $('.adding').bind("click", function (e) {
+                    listId.splice(x, 0, $(this).attr('data-id'));
+                    listNames.splice(x, 0, $(this).attr('data-name'));
+                    if($(this).attr('data-calorie') == "Non communiqué"){
+                        listCalories.splice(x, 0, 0);
+                    } else {
+                        listCalories.splice(x, 0, parseInt($(this).attr('data-calorie')));
+                    }
+                    x++;
+                    CalorieUtilise = listCalories.join(' + ');
+                    CalorieUtilise = eval(CalorieUtilise);
+                    max = CalorieMax / CalorieMax * 100;
+                    utilise = CalorieUtilise / max * 100;
+                    besoinKcal = CalorieMax - CalorieUtilise;
+                    besoinRestant = max - utilise;
+                    caloriePie(CalorieUtilise, besoinKcal, utilise, besoinRestant);
+                    console.log(CalorieUtilise);
+                    console.log(listId);
+                    console.log(listNames);
+                    console.log(listCalories);
                 });
                 $('.autocomplete').autocomplete({
                     data: complete,
                     limit: 10,
                     onAutocomplete: function (val) {
 
+                        searchingProduct(val);
                     },
                     minLength: 2,
                 });
@@ -92,249 +140,197 @@ function searchingProduct(search) {
         }
 });
 }
-
-function caloriePie(calorie){
-    $.ajax({
-        url: "http://localhost/MyFridgeFood/energy/",
-        type: "POST",
-        data: {
-            calorie: calorie
+function caloriePie(Kcal, besoinK, utile, besoin) {
+    $('#graphique').html('');
+    $('#graphique').append('<div id="CalorieChart"></div>');
+    var pie = new d3pie("CalorieChart", {
+        "header": {
+            "title": {
+                "text": "Comparaison de ",
+                "fontSize": 24,
+                "font": "open sans"
+            },
+            "subtitle": {
+                "text": "A full pie chart to show off label collision detection and resolution.",
+                "color": "#999999",
+                "fontSize": 12,
+                "font": "open sans"
+            },
+            "titleSubtitlePadding": 9
         },
-        dataType: "json",
-        success: function (data) {
-            var pie = new d3pie("CalorieChart", {
-                "header": {
-                    "title": {
-                        "text": "Lots of Programming Languages",
-                        "fontSize": 24,
-                        "font": "open sans"
-                    },
-                    "subtitle": {
-                        "text": "A full pie chart to show off label collision detection and resolution.",
-                        "color": "#999999",
-                        "fontSize": 12,
-                        "font": "open sans"
-                    },
-                    "titleSubtitlePadding": 9
+        "footer": {
+            "color": "#999999",
+            "fontSize": 10,
+            "font": "open sans",
+            "location": "bottom-left"
+        },
+        "size": {
+            "canvasWidth": 590,
+            "pieInnerRadius": "36%",
+            "pieOuterRadius": "88%"
+        },
+        "data": {
+            "sortOrder": "value-desc",
+            "content": [
+                {
+                    "label": "Besoin journalier",
+                    "value": besoin,
+                    "color": "#2484c1"
                 },
-                "footer": {
-                    "color": "#999999",
-                    "fontSize": 10,
-                    "font": "open sans",
-                    "location": "bottom-left"
+                {
+                    "label": "Calorie des aliments sélectionné",
+                    "value": utile,
+                    "color": "#0c6197"
+                }
+            ]
+        },
+        "labels": {
+            "outer": {
+                "format": "label",
+                "pieDistance": 32
+            },
+            "inner": {
+                "hideWhenLessThanPercentage": 3
+            },
+            "mainLabel": {
+                "fontSize": 11
+            },
+            "percentage": {
+                "color": "#ffffff",
+                "decimalPlaces": 0
+            },
+            "value": {
+                "color": "#adadad",
+                "fontSize": 11
+            },
+            "lines": {
+                "enabled": true
+            },
+            "truncation": {
+                "enabled": true
+            }
+        },
+        "tooltips": {
+            "enabled": true,
+            "type": "placeholder",
+            "string": "{label}:"+Kcal+" Kcal",
+            "styles": {
+                "fadeInSpeed": 192
+            }
+        },
+        "effects": {
+            "load": {
+                "speed": 500
+            },
+            "pullOutSegmentOnClick": {
+                "effect": "linear",
+                "speed": 200,
+                "size": 8
+            }
+        },
+        "misc": {
+            "gradient": {
+                "enabled": true,
+                "percentage": 100
+            }
+        },
+        "callbacks": {}
+    });
+    if(utile > besoin){
+        var besoinKr = besoinK * -1;
+        $('#graphique').append('<h2>Vous avez dépassé votre besoin journalier de '+besoinKr+' Kcal</h2>')
+    } else {
+        $('#graphique').append('<h2>' + besoinK + ' Kcal Restant</h2>')
+    }
+}
+function originalPie() {
+    $('#graphique').html('');
+    var pie = new d3pie("CalorieChart", {
+        "header": {
+            "title": {
+                "text": "Lots of Programming Languages",
+                "fontSize": 24,
+                "font": "open sans"
+            },
+            "subtitle": {
+                "text": "A full pie chart to show off label collision detection and resolution.",
+                "color": "#999999",
+                "fontSize": 12,
+                "font": "open sans"
+            },
+            "titleSubtitlePadding": 9
+        },
+        "footer": {
+            "color": "#999999",
+            "fontSize": 10,
+            "font": "open sans",
+            "location": "bottom-left"
+        },
+        "size": {
+            "canvasWidth": 590,
+            "pieInnerRadius": "36%",
+            "pieOuterRadius": "88%"
+        },
+        "data": {
+            "sortOrder": "value-desc",
+            "content": [
+                {
+                    "label": "Besoin journalier",
+                    "value": 2700,
+                    "color": "#2484c1"
                 },
-                "size": {
-                    "canvasWidth": 590,
-                    "pieInnerRadius": "36%",
-                    "pieOuterRadius": "88%"
-                },
-                "data": {
-                    "sortOrder": "value-desc",
-                    "content": [
-                        {
-                            "label": "JavaScript",
-                            "value": 264131,
-                            "color": "#2484c1"
-                        },
-                        {
-                            "label": "Ruby",
-                            "value": 218812,
-                            "color": "#0c6197"
-                        },
-                        {
-                            "label": "Java",
-                            "value": 157618,
-                            "color": "#4daa4b"
-                        },
-                        {
-                            "label": "PHP",
-                            "value": 114384,
-                            "color": "#90c469"
-                        },
-                        {
-                            "label": "Python",
-                            "value": 95002,
-                            "color": "#daca61"
-                        },
-                        {
-                            "label": "C+",
-                            "value": 78327,
-                            "color": "#e4a14b"
-                        },
-                        {
-                            "label": "C",
-                            "value": 67706,
-                            "color": "#e98125"
-                        },
-                        {
-                            "label": "Objective-C",
-                            "value": 36344,
-                            "color": "#cb2121"
-                        },
-                        {
-                            "label": "Shell",
-                            "value": 28561,
-                            "color": "#830909"
-                        },
-                        {
-                            "label": "Cobol",
-                            "value": 24131,
-                            "color": "#923e99"
-                        },
-                        {
-                            "label": "C#",
-                            "value": 100,
-                            "color": "#ae83d5"
-                        },
-                        {
-                            "label": "Coldfusion",
-                            "value": 68,
-                            "color": "#bf273e"
-                        },
-                        {
-                            "label": "Fortran",
-                            "value": 218812,
-                            "color": "#ce2aeb"
-                        },
-                        {
-                            "label": "Coffeescript",
-                            "value": 157618,
-                            "color": "#bca44a"
-                        },
-                        {
-                            "label": "Node",
-                            "value": 114384,
-                            "color": "#618d1b"
-                        },
-                        {
-                            "label": "Basic",
-                            "value": 95002,
-                            "color": "#1ee67b"
-                        },
-                        {
-                            "label": "Cola",
-                            "value": 36344,
-                            "color": "#b0ec44"
-                        },
-                        {
-                            "label": "Perl",
-                            "value": 32170,
-                            "color": "#a4a0c9"
-                        },
-                        {
-                            "label": "Dart",
-                            "value": 28561,
-                            "color": "#322849"
-                        },
-                        {
-                            "label": "Go",
-                            "value": 264131,
-                            "color": "#86f71a"
-                        },
-                        {
-                            "label": "Groovy",
-                            "value": 218812,
-                            "color": "#d1c87f"
-                        },
-                        {
-                            "label": "Processing",
-                            "value": 157618,
-                            "color": "#7d9058"
-                        },
-                        {
-                            "label": "Smalltalk",
-                            "value": 114384,
-                            "color": "#44b9b0"
-                        },
-                        {
-                            "label": "Scala",
-                            "value": 95002,
-                            "color": "#7c37c0"
-                        },
-                        {
-                            "label": "Visual Basic",
-                            "value": 78327,
-                            "color": "#cc9fb1"
-                        },
-                        {
-                            "label": "Scheme",
-                            "value": 67706,
-                            "color": "#e65414"
-                        },
-                        {
-                            "label": "Rust",
-                            "value": 36344,
-                            "color": "#8b6834"
-                        },
-                        {
-                            "label": "FoxPro",
-                            "value": 32170,
-                            "color": "#248838"
-                        }
-                    ]
-                },
-                "labels": {
-                    "outer": {
-                        "format": "label-value1",
-                        "pieDistance": 32
-                    },
-                    "inner": {
-                        "hideWhenLessThanPercentage": 3
-                    },
-                    "mainLabel": {
-                        "fontSize": 11
-                    },
-                    "percentage": {
-                        "color": "#ffffff",
-                        "decimalPlaces": 0
-                    },
-                    "value": {
-                        "color": "#adadad",
-                        "fontSize": 11
-                    },
-                    "lines": {
-                        "enabled": true
-                    },
-                    "truncation": {
-                        "enabled": true
-                    }
-                },
-                "tooltips": {
-                    "enabled": true,
-                    "type": "placeholder",
-                    "string": "{label}: {value} Kcal",
-                    "styles": {
-                        "fadeInSpeed": 192
-                    }
-                },
-                "effects": {
-                    "load": {
-                        "speed": 500
-                    },
-                    "pullOutSegmentOnClick": {
-                        "effect": "linear",
-                        "speed": 200,
-                        "size": 8
-                    }
-                },
-                "misc": {
-                    "gradient": {
-                        "enabled": true,
-                        "percentage": 100
-                    }
-                },
-                "callbacks": {}
-            });
-        }
+            ]
+        },
+        "labels": {
+            "outer": {
+                "format": "label",
+                "pieDistance": 32
+            },
+            "inner": {
+                "hideWhenLessThanPercentage": 3
+            },
+            "mainLabel": {
+                "fontSize": 11
+            },
+            "percentage": {
+                "color": "#ffffff",
+                "decimalPlaces": 0
+            },
+            "value": {
+                "color": "#adadad",
+                "fontSize": 11
+            },
+            "lines": {
+                "enabled": true
+            },
+            "truncation": {
+                "enabled": true
+            }
+        },
+        "tooltips": {
+            "enabled": true,
+            "type": "placeholder",
+            "string": "{label}: {value} Kcal",
+            "styles": {
+                "fadeInSpeed": 192
+            }
+        },
+        "effects": {
+            "load": {
+                "speed": 500
+            },
+            "pullOutSegmentOnClick": {
+                "effect": "linear",
+                "speed": 200,
+                "size": 8
+            }
+        },
+        "misc": {
+            "gradient": {
+                "enabled": true,
+                "percentage": 100
+            }
+        },
+        "callbacks": {}
     });
 }
-$('.addList').click(function() {
-
-    listnames[y] = $(this).attr('data-name').val();
-    listcalories[y] = $(this).attr('data-calorie').val();
-    y++;
-
-    console.log(listnames);
-    console.log(listcalories);
-});
-

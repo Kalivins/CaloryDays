@@ -65,7 +65,7 @@ $router->map( 'POST|GET', '/recipe/[i:id]', function() {
             echo $template->render($params);
 });
 
-$router->map( 'GET', '/energy', function() {
+$router->map( 'POST|GET', '/energy', function() {
     
             global $twig;
             global $locate;
