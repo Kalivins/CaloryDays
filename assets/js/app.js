@@ -189,7 +189,7 @@ function caloriePie(Kcal, besoinK, utile, besoin) {
     var pie = new d3pie("CalorieChart", {
         "header": {
             "title": {
-                "text": "Comparaison de ",
+                "text": "Comparaison de Calorie",
                 "fontSize": 24,
                 "font": "open sans"
             },
@@ -278,7 +278,7 @@ function caloriePie(Kcal, besoinK, utile, besoin) {
         },
         "callbacks": {}
     });
-    if (utile > besoin) {
+    if (CalorieUtilise > CalorieMax) {
         var besoinKr = besoinK * -1;
         $('#graphique').append('<h2>Vous avez dépassé votre besoin journalier de ' + besoinKr + ' Kcal</h2>')
     } else {
