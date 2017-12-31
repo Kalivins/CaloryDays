@@ -15,7 +15,13 @@ function listRecipes()
     return $posts;
 
 }
+function addRecipe()
+{
+    $postRecipe = new \Ksr\MyFridgeFood\Model\PostRecipe();
+    $posts = $postRecipe->setRecipes();
 
+    return $posts;
+}
 function viewRecipe($id)
 {
     $postRecipe = new \Ksr\MyFridgeFood\Model\PostRecipe();

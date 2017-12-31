@@ -14,11 +14,36 @@ class PostRecipe extends Bdd
 
         return $result;
     }
+    public function setRecipes()
+    {
+        $id_noscrapped = explode('/', $_GET['url']);
+        $id_user = intval($id_noscrapped[1]);
+        $pdo = $this->dbConnect();
+        $req = $pdo->prepare(
+            'BEGIN;
+            INSERT INTO recette
+            (preparation, nom_recette, photo)
+            VALUES (:preparation, :nom_recette, 10);
+            INSERT INTO recette_food
+            (id_recette, id_food)
+            VALUES (LAST_INSERT_ID(), 11);
+            INSERT INTO user_recette
+            (id_user, id_recette)
+            VALUES (:id_user, LAST_INSERT_ID());
+            COMMIT;
+            ');
+        $req->bindParam(':preparation', $_POST['preparation']);
+        $req->bindParam(':nom_recette', $_POST['nom_recette']);
+        //$req->bindParam(':photo', 10); //$_POST['photo']
+        //$req->bindParam(':id_food', 11); //$_POST['id_food']
+        $req->bindParam(':id_user', $id_user);
+
+        return $req->execute();
+    }
 
     public function getRecipe($recipeId)
     {
         $pdo = $this->dbConnect();
-        // Requêtes à revoir ou à traiter avec du php pour comparer l'id de la recette et les id des articles food associés
         $req = $pdo->prepare('
         SELECT user.pseudo, user.email, recette.preparation, recette.nom_recette, recette.photo 
         FROM recette, user

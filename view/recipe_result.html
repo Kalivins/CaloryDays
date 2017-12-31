@@ -1,0 +1,18 @@
+{% extends 'template.html' %}{% block head %}
+{% if bool == false %}
+<title>Votre recette n'a pas été ajouté</title>
+{% else %}
+<title>Votre recette a bien été ajouté</title>
+{% endif %}
+{% endblock %}
+{% block content %}
+{% if bool == false %}
+<div class="container">
+    <p>Une erreur est survenue pendant l'ajout de la recette !</p>
+</div>
+{% else %}
+<div class="container">
+    <p>Votre recette a bien été ajouté !!</p>
+</div>
+{% endif %}
+{% endblock %}

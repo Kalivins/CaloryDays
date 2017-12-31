@@ -16,6 +16,7 @@ class User extends Bdd
             $mdp_hash = hash('sha256', $_POST['mdp']);
             foreach ($connexion_user as $user) {
                 if ($_POST['mail'] == $user["email"] && $mdp_hash == $user['mdp']) {
+                    $_SESSION['id'] = $user['id'];
                     $_SESSION['mail'] = $user['email'];
                     $_SESSION['prenom'] = $user['prenom'];
                     $_SESSION['nom'] = $user['nom'];
@@ -44,11 +45,17 @@ class User extends Bdd
         session_destroy();
         header("Refresh:2; url=http://localhost/MyFridgeFood/home");
     }
+    public function checkUser(){
+        $pdo = $this->dbConnect();
+    }
     public function register()
     {
         $pdo = $this->dbConnect();
+
         $mdp = hash('sha256', $_POST['mdp']);
+
         $post = $pdo->prepare('INSERT INTO user (nom, prenom, pseudo, date_naissance, email, mdp) VALUES (:nom, :prenom, :pseudo, :date_naissance, :email, :mdp)');
+
         $post->bindParam(':nom', $_POST['nom']);
         $post->bindParam(':prenom', $_POST['prenom']);
         $post->bindParam(':pseudo', $_POST['pseudo']);
