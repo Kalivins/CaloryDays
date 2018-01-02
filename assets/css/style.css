@@ -111,10 +111,8 @@ nav a {
   height: 100%; }
 
 .search {
-  position: fixed;
   top: 50px;
   width: 500px;
-  z-index: 98;
   display: flex;
   justify-content: center; }
 
@@ -212,9 +210,10 @@ nav a {
   display: inline-block;
   font-size: 1.2rem;
   padding: 0 10px;
-  line-height: 30px; }
+  line-height: 30px;
+  margin: 0; }
 
-@media screen and (max-width: 1170px) {
+@media screen and (max-width: 1400px) {
   .lettre {
     border: 0px solid transparent;
     color: #444;

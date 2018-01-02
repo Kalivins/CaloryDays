@@ -13,8 +13,11 @@
             </form>
             <button type="button" class=" btn reset">Reset</button>
         </div>
-        <div class="col s12 m12 l8 purple lighten-5">
-            <form class="filters hide-on-small-only center-align" action="{{ locate }}/MyFridgeFood/energy/letter" method="post">
+        <div class="col s2 hide-on-large-only">
+
+        </div>
+        <div class="col s10 m12 l8 purple lighten-5">
+            <form class="filters hide-on-med-and-down center-align" action="{{ locate }}/MyFridgeFood/energy/letter" method="post">
                 <ul class="pagination">
                     <li class="active"><button type="submit" name="letter" class="lettre waves-effect purple lighten-3 white-text" value="a">A</button></li>
                     <li><button type="submit" name="letter" class="lettre waves-effect purple lighten-3 white-text" value="b">B</button></li>
@@ -62,9 +65,7 @@
             <div class="header-ref">Mon refrigerateur</div>
             <div class="article_list"></div>
         </div>
-    </div>
-    <div class="row">
-        <div id="graphique">
+        <div class="col s3 m4 l4" id="graphique">
             <div id="CalorieChart"></div>
         </div>
     </div>

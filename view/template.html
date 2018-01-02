@@ -196,20 +196,20 @@
         <li>
             <div class="user-view">
                 <div class="background">
-                    <img src="images/office.jpg">
+                    <img src="{{ locate }}/MyFridgeFood/assets/img/i1.jpg">
                 </div>
-                <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
-                <a href="#!name"><span class="white-text name">John Doe</span></a>
-                <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                <a href="#!user"><img class="circle" src="{{ locate }}/MyFridgeFood/assets/img/i2.png"></a>
+                <a href="#!name"><span class="white-text name"> {{ session.nom }} {{session.prenom}}</span></a>
+                <a href="#!email"><span class="white-text email">{{session.mail}}</span></a>
             </div>
         </li>
-        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-        <li><a href="#!">Second Link</a></li>
+        <li><a class="subheader" href="#!"><i class="material-icons">build</i>Modifier compte</a></li>
+        <li><a href="#!"><i class="material-icons">add</i>Ajouter recette</a></li>
         <li>
             <div class="divider"></div>
         </li>
-        <li><a class="subheader">Subheader</a></li>
-        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        <li><a class="subheader"><i class="material-icons">comment</i> Ajouter article</a></li>
+        <li><a class="subheader" href="#!"><i class="material-icons">link</i> Contribuer</a></li>
     </ul>
 
     {% block content %} {% endblock content %}
