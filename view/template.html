@@ -14,17 +14,19 @@
     <title></title>
 </head>
 
-<body>
-    <div class="logo">
-        <a href="#" class="titre-logo waves-effect"><img src="{{ locate }}/MyFridgeFood/assets/img/fridge_logo.svg" alt="logo" height="50" width="100"></a>
-        <a href="#" class="titre-logo">My Fridge Food</a>
+<body class="grey lighten-1">
+
+    <div class="row purple lighten-3 logo">
+        <div class="col s12 center-align">
+            <p class="testes"><img src="{{ locate }}/MyFridgeFood/assets/img/frog.svg" alt="logo" height="50" width="100">My Food Fridge</p>
+        </div>
+
     </div>
     {% block landing %} {% endblock %}
     <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper purple lighten-4">
             <ul id="nav-mobil" class="left">
                 <li><a href="#" data-activates="slide-out" class="collapse waves-effect"><i class="fa fa-bars" aria-hidden="true"></i></a></li>
-
                 <li><a href="{{locate}}/MyFridgeFood/home" class="waves-effect"><i class="fa fa-home" aria-hidden="true"></i><span class="hide-on-med-and-down"> Accueil</span></a></li>
             </ul>
             {% if session.result != true %}

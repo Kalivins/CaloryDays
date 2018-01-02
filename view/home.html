@@ -1,74 +1,71 @@
-    {% extends 'template.html' %}
-    {% block head %}
-        <title>Bienvenue sur MyFridgeFood</title>
-    {% endblock head %}
-    {% block landing %}
-        <section class="description">
-            Bienvenue dans My Fridge Food pour trouver des recettes pour vous !
-        </section>
-    {% endblock %}
-    {% block content %}
-   <div class="container">
+ {% extends 'template.html' %} {% block head %}
+<title>Bienvenue sur MyFridgeFood</title>
+{% endblock head %} {% block landing %}
+<section class="description">
+    Bienvenue dans My Fridge Food pour trouver des recettes pour vous !
+</section>
+{% endblock %} {% block content %}
+<div class="container">
     <div class="row">
-        <div class="col s6 m4 l4">
-            <div class="card menu-home darken-1">
-                <div class="card-content cardcontent white-text">
-                <span class="card-title center">Calorie</span>
-            </div>
-            <div class="card-action">
-                <a href="energy" class="waves-effect waves-light btn">Accéder</a>
+        <div class="col s12 m4 l4">
+            <div class="card menu-home purple lighten-5">
+                <div class="card-content cardcontent red-text">
+                    <span class="card-title center">Calorie du jour</span>
+                </div>
+                <div class="card-action">
+                    <a href="energy" class="waves-effect waves-light btn">Vérifier</a>
                 </div>
             </div>
         </div>
-        <div class="col s6 m4 l4">
-            <div class="card menu-home darken-1">
-                <div class="card-content cardcontent white-text">
-                    <span class="card-title center">Vos recettes</span>
+        <div class="col s12 m4 l4">
+            <div class="card menu-home purple lighten-5">
+                <div class="card-content cardcontent grey-text">
+                    <span class="card-title center">Ma consommation annuelle</span>
                 </div>
                 <div class="card-action">
                     <a href="add_recipe" class="waves-effect waves-light btn">Accéder</a>
                 </div>
             </div>
         </div>
-            <div class="col s12 m4 l4">
-            <div class="card menu-home darken-1">
-                <div class="card-content cardcontent  white-text">
-                <span class="card-title center">Réfrigerateur</span>
+        <div class="col s12 m4 l4">
+            <div class="card menu-home purple lighten-5">
+                <div class="card-content cardcontent grey darken-3 white-text">
+                    <span class="card-title center">Ma liste de course</span>
                 </div>
-                <div class="card-action">
-                <a href="fridge" class="waves-effect waves-light btn">Accéder</a>
+                <div class="card-action center-align">
+                    <a href="fridge" class="waves-effect waves-light btn ">Accéder</a>
                 </div>
-            </div>
             </div>
         </div>
     </div>
-    <div class="container search">
-        <div class="row">
-            <div class="input-field l12">
+</div>
+<div class="container search">
+    <div class="row">
+        <div class="input-field l12">
             <input type="text" id="autocomplete-input" class="search2 autocomplete">
             <label for="autocomplete-input" class="search1">Recherche</label>
         </div>
     </div>
 </div>
-       <div class="row">
-       {% for recipe in recipes %}
-        <div class="col s12 m4 l3">
-          <div class="card products">
+<div class="row">
+    {% for recipe in recipes %}
+    <div class="col s12 m4 l3">
+        <div class="card products">
             <div class="card-image">
-            <img src="{{ recipe.photo }}" width="300" height="250" alt="image de {{ recipe.nom_recette }}">
-              <span class="card-title title-card">{{ recipe.nom_recette }}</span>
+                <img src="{{ recipe.photo }}" width="300" height="250" alt="image de {{ recipe.nom_recette }}">
+                <span class="card-title title-card">{{ recipe.nom_recette }}</span>
             </div>
             <div class="card-content">
-              <p class="truncate">{{ recipe.preparation }}</p>
+                <p class="truncate">{{ recipe.preparation }}</p>
             </div>
             <div class="card-action actioncard">
-             <form action="recipe/{{ recipe.id_recette }}" method="POST">
-              <button name="id" value="{{ recipe.id_recette }}" type="submit">Voir la recette</button>
+                <form action="recipe/{{ recipe.id_recette }}" method="POST">
+                    <button name="id" value="{{ recipe.id_recette }}" type="submit">Voir la recette</button>
                 </form>
             </div>
-          </div>
         </div>
-        {% endfor %}
     </div>
-    
+    {% endfor %}
+</div>
+
 {% endblock content %}

@@ -3,8 +3,17 @@
 }
 
 $orange: rgb(255, 112, 67);
+@font-face {
+    font-family: 'coolvetica';
+    src: url('/localhost/MyFoodFridge/assets/police/coolveticarg.ttf');
+}
+
 html {
     background-color: #EEEEEE;
+}
+
+body {
+    font-family: coolvetica, sans-serif;
 }
 
 .logo {
@@ -15,19 +24,19 @@ html {
     background-color: $orange;
     top: 0px;
     position: sticky;
-    z-index: 2;
+    z-index: 100;
 }
 
 .titre-logo {
-    color: black;
+    @include black();
 }
 
 nav {
     background-color: $orange !important;
-    color: black !important;
+    @include black();
     top: 50px;
     position: sticky;
-    z-index: 2;
+    z-index: 100;
     margin-bottom: 20px;
 }
 
@@ -83,7 +92,7 @@ nav a {
 }
 
 .actioncard {
-    color: #FF7043 !important;
+    color: $orange !important;
 }
 
 #products {
@@ -105,7 +114,7 @@ nav a {
 }
 
 .hover-card button {
-    color: black;
+    @include black();
     background-color: transparent;
     border: 1px solid transparent;
     height: 60px;
@@ -132,13 +141,15 @@ nav a {
 }
 
 .search {
-    position: sticky;
+    position: fixed;
     top: 50px;
-    width: 1000px;
-    z-index: 3;
+    width: 500px;
+    z-index: 98;
     display: flex;
     justify-content: center;
 }
+
+.search form {}
 
 .search1 {
     width: 100px;
@@ -199,7 +210,7 @@ nav a {
 
 .close:hover,
 .close:focus {
-    color: black;
+    @include black();
     text-decoration: none;
     cursor: pointer;
 }
@@ -225,8 +236,8 @@ nav a {
 .cat {
     font-size: 15px;
     position: absolute;
-    background-color: #FF7043;
-    color: black;
+    background-color: $orange;
+    @include black();
     top: 0;
     left: 0;
 }
@@ -237,13 +248,13 @@ nav a {
     top: 25px;
     right: 0;
     background-color: white;
-    color: black;
+    @include black();
 }
 
 // Pagination
 .pagination {
-    display: flex;
-    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
 }
 
 .pag form {
@@ -260,6 +271,17 @@ nav a {
     line-height: 30px;
 }
 
+@media screen and (max-width: 1170px) {
+    .lettre {
+        border: 0px solid transparent;
+        color: #444;
+        display: inline-block;
+        font-size: 0.8rem;
+        padding: 0 10px;
+        line-height: 30px;
+    }
+}
+
 .row {
     margin-bottom: 0px !important;
 }
@@ -267,12 +289,13 @@ nav a {
 // refriferator del la pagination
 .refrigerateur {
     border: 10px solid #263238;
-    background-color: #FF7043;
-    height: 500px;
+    background-color: $orange;
+    height: 200px;
     border-top-right-radius: 5%;
     border-top-left-radius: 5%;
     padding-top: 10px;
     color: #263238;
+    overflow: auto;
 }
 
 .header-ref {
@@ -300,5 +323,5 @@ nav a {
 }
 
 #list_recette .card-content {
-    color: black !important;
+    @include black();
 }
