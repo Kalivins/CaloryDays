@@ -9,7 +9,8 @@ class PostProducts extends Bdd
     public function getProducts()
     {
         $pdo = $this->dbConnect();
-        $posts = $pdo->query('SELECT id, product_name, brands, main_category_fr, energy_100g, image_small_url, image_url FROM food ORDER BY product_name LIMIT 0,30');
+        $e = rand(0, 21000);
+        $posts = $pdo->query('SELECT id, product_name, brands, main_category_fr, energy_100g, image_small_url, image_url FROM food ORDER BY product_name LIMIT '.$e.',80');
 
         $req = $this->SetValues($posts);
         return $req;
@@ -65,7 +66,7 @@ class PostProducts extends Bdd
         $pdo = $this->dbConnect();
         // $search = preg_replace('#[^a-zA-Z ?0-9]#i',"", $search);
         $searching = '%'.$search.'%';
-        $posts = $pdo->prepare('SELECT id, product_name, brands, main_category_fr, image_url, image_small_url, energy_100g FROM food WHERE product_name LIKE :search LIMIT 50');
+        $posts = $pdo->prepare('SELECT id, product_name, brands, main_category_fr, image_url, image_small_url, energy_100g FROM food WHERE product_name LIKE :search LIMIT 80');
 
         $posts->bindParam(':search', $searching);
         $posts->execute();
@@ -83,7 +84,7 @@ class PostProducts extends Bdd
         } else {
             $pdo = $this->dbConnect();
             $letter = $letter . '%';
-            $req = $pdo->prepare('SELECT id, product_name, brands, main_category_fr, image_url, image_small_url, energy_100g FROM food WHERE product_name LIKE :letter ORDER BY main_category_fr DESC LIMIT 40');
+            $req = $pdo->prepare('SELECT id, product_name, brands, main_category_fr, image_url, image_small_url, energy_100g FROM food WHERE product_name LIKE :letter ORDER BY main_category_fr DESC LIMIT 80');
             $req->bindParam(':letter', $letter);
             $req->execute();
             $posts = $req->fetchAll();
@@ -96,12 +97,14 @@ class PostProducts extends Bdd
     public function getByCategory($category)
     {
         $pdo = $this->dbConnect();
-        $req = $pdo->prepare('SELECT id, product_name, brands, image_url, image_small_url, energy_100g, main_category_fr FROM food WHERE main_category_fr = :category LIMIT 40');
+        $req = $pdo->prepare('SELECT id, product_name, brands, image_url, image_small_url, energy_100g, main_category_fr FROM food WHERE main_category_fr = :category LIMIT 80');
         $req->bindParam(':category', $category);
         $req->execute();
         $post = $req->fetchAll();
+
+        $posts = $this->SetValues($post);
         
-        return $post;
+        return $posts;
     }
     public function getByAdditive($additive)
     {

@@ -19,6 +19,7 @@ function addRecipe()
 {
     $postRecipe = new \Ksr\MyFridgeFood\Model\PostRecipe();
     $posts = $postRecipe->setRecipes();
+    $post = $postRecipe->setIngredients();
 
     return $posts;
 }
@@ -49,6 +50,13 @@ function autoCompleteSearch($search)
 {
     $postSearch = new \Ksr\MyFridgeFood\Model\PostProducts();
     $post = $postSearch->getBySearch($search);
+
+    return $post;
+}
+function searchCategory($category)
+{
+    $postSearch = new \Ksr\MyFridgeFood\Model\PostProducts();
+    $post = $postSearch->getByCategory($category);
 
     return $post;
 }

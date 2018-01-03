@@ -62,7 +62,6 @@ $router->map( 'POST|GET', '/add_recipe/[i:id]', function() {
         "bool" => $add
 
     ];
-    var_dump($add);
         $template = $twig->load('recipe_result.html');
         echo $template->render($params);
 });
@@ -116,6 +115,14 @@ $router->map( 'POST', '/energy/letter', function() {
     
             echo json_encode($products);
             
+});
+
+$router->map( 'POST', '/category', function() {
+
+    $products = searchCategory($_POST['category']);
+
+    echo json_encode($products);
+
 });
 
 $router->map( 'POST', '/search', function() {

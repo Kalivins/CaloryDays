@@ -3,6 +3,7 @@ $(document).ready(function() {
     $('.filters').submit(function(e) {
         e.preventDefault();
     });
+        $('select').material_select();
     $('.lettre').click(function() {
         var letter = $(this).val();
         alphabet(letter);
@@ -19,6 +20,10 @@ $(document).ready(function() {
 
     $(".collapse").sideNav({
         draggable: true,
+    });
+    $('#cat').change(function (e) {
+       var search = $('#cat :selected').text();
+       searchingCategory(search);
     });
     $('.autocomplete').keypress(function(e) {
         var search = $('.searched').val();
@@ -91,7 +96,7 @@ function alphabet(lettre) {
                         Kcal = "";
                     }
                     if (index.calorie_100g != "Non communiqué" || index.calorie_100g == 0) {
-                        $('.searching-panel').append('<div id="' + index.id + '" class="col s12 m3 l3"><div class="card product"><div class="card-image produit"><img src="' + index.image_small_url + '" height="150" alt="image de ' + index.product_name + '"><span class="card-title card_c title_c">' + index.product_name + '</span><div class="card-title card_c content-energy"><p class="cat z-depth-3">' + index.main_category_fr + '</p><p class="cal z-depth-3">' + index.calorie_100g + ' ' + Kcal + '</p><span class="card-title card_c title_c">' + index.product_name + '</span></div><div class="hover-card"><button class="adding btn"  type="button" data-id="' + index.id + '" data-calorie="' + index.calorie_100g + '" data-name="' + index.product_name + '"> <i class="large material-icons icon-produit">add_circle_outline</i></button></div></div></div>');
+                        $('.searching-panel').append('<div id="' + index.id + '" class="col s6 m4 l3"><div class="card product"><div class="card-image produit"><img src="' + index.image_small_url + '" height="150" alt="image de ' + index.product_name + '"><span class="card-title card_c title_c">' + index.product_name + '</span><div class="card-title card_c content-energy"><p class="cat z-depth-3">' + index.main_category_fr + '</p><p class="cal z-depth-3">' + index.calorie_100g + ' ' + Kcal + '</p><span class="card-title card_c title_c">' + index.product_name + '</span></div><div class="hover-card"><button class="adding btn"  type="button" data-id="' + index.id + '" data-calorie="' + index.calorie_100g + '" data-name="' + index.product_name + '"> <i class="large material-icons icon-produit">add_circle_outline</i></button></div></div></div>');
                     }
                 });
                 $('.adding').bind("click", function(e) {
@@ -104,8 +109,15 @@ function alphabet(lettre) {
                     } else {
                         listCalories.splice(x, 0, parseInt($(this).attr('data-calorie')));
                     }
+                    if($('.article_list').hasClass('empty')){
+                        $('.article_list').append('<div class="element-ref '+x+'">' + $(this).attr('data-name') + '<span class="pull-right">' + filtre + ' Kcal</span></div>');
+                        $('.article_list').removeClass('empty');
+                    }
+                    else {
+                        var t = x - 1;
+                        $('.'+t+'').before('<div class="element-ref '+x+'">' + $(this).attr('data-name') + '<span class="pull-right">' + filtre + ' Kcal</span></div>');
+                    }
                     x++;
-                    $('.article_list').append('<div class="element-ref">' + $(this).attr('data-name') + '<span class="pull-right">' + filtre + ' Kcal</span></div>');
                     CalorieUtilise = listCalories.join(' + ');
                     CalorieUtilise = eval(CalorieUtilise);
                     var max = CalorieMax / CalorieMax * 100;
@@ -120,6 +132,61 @@ function alphabet(lettre) {
             $('.searching-panel').fadeIn(400, "linear");
         }
 
+    });
+}
+function searchingCategory(search) {
+    $.ajax({
+        url: "http://localhost/MyFridgeFood/category",
+        type: 'POST',
+        data: {
+            category: search,
+        },
+        dataType: 'json',
+        success: function (data) {
+            $('.searching-panel').fadeOut(400, "linear", function() {
+                $('.searching-panel').html('');
+
+                data.forEach(function(index) {
+                    var Kcal = "Kcal";
+                    if (index.calorie_100g == "Non communiqué") {
+                        Kcal = "";
+                    }
+                    if (index.calorie_100g != "Non communiqué" || index.calorie_100g == 0) {
+                        $('.searching-panel').append('<div id="' + index.id + '" class="col s6 m4 l3"><div class="card product"><div class="card-image produit"><img src="' + index.image_small_url + '" height="150" alt="image de ' + index.product_name + '"><span class="card-title card_c title_c">' + index.product_name + '</span><div class="card-title card_c content-energy"><p class="cat z-depth-3">' + index.main_category_fr + '</p><p class="cal z-depth-3">' + index.calorie_100g + ' ' + Kcal + '</p><span class="card-title card_c title_c">' + index.product_name + '</span></div><div class="hover-card"><button class="adding btn"  type="button" data-id="' + index.id + '" data-calorie="' + index.calorie_100g + '" data-name="' + index.product_name + '"> <i class="large material-icons icon-produit">add_circle_outline</i></button></div></div></div>');
+                    }
+                });
+                $('.adding').bind("click", function(e) {
+                    listId.splice(x, 0, $(this).attr('data-id'));
+                    listNames.splice(x, 0, $(this).attr('data-name'));
+                    var filtre = $(this).attr('data-calorie');
+                    if ($(this).attr('data-calorie') == "Non communiqué") {
+                        filtre = 0;
+                        listCalories.splice(x, 0, 0);
+                    } else {
+                        listCalories.splice(x, 0, parseInt($(this).attr('data-calorie')));
+                    }
+                    if($('.article_list').hasClass('empty')){
+                        $('.article_list').append('<div class="element-ref '+x+'">' + $(this).attr('data-name') + '<span class="pull-right">' + filtre + ' Kcal</span></div>');
+                        $('.article_list').removeClass('empty');
+                    }
+                    else {
+                        var t = x - 1;
+                        $('.'+t+'').before('<div class="element-ref '+x+'">' + $(this).attr('data-name') + '<span class="pull-right">' + filtre + ' Kcal</span></div>');
+                    }
+                    x++;
+                    CalorieUtilise = listCalories.join(' + ');
+                    CalorieUtilise = eval(CalorieUtilise);
+                    var max = CalorieMax / CalorieMax * 100;
+                    var besoinKcal = CalorieMax - CalorieUtilise;
+                    var utilise = CalorieUtilise / CalorieMax * 100;
+                    var besoinRestant = max - utilise;
+                    caloriePie(CalorieUtilise, besoinKcal, utilise, besoinRestant);
+                    console.log(utilise);
+                });
+
+            });
+            $('.searching-panel').fadeIn(400, "linear");
+        }
     });
 }
 
@@ -138,41 +205,49 @@ function searchingProduct(search) {
                 var complete = {};
 
                 datat.forEach(function(index) {
-
-                    complete[index.product_name] = index.image_small_url;
+                    if(index.energy_100g != "Non communiqué") {
+                        complete[index.product_name] = index.image_small_url;
+                    }
 
                     var Kcal = "Kcal";
                     if (index.calorie_100g == "Non communiqué") {
                         Kcal = "";
                     }
-                    if (index.calorie_100g != "Non communiqué") {
-                        $('.searching-panel').append('<div id="' + index.id + '" class="item col s12 m3 l3"><div class="card product"><div class="card-image produit"><img src="' + index.image_small_url + '" height="150" alt="image de ' + index.product_name + '"><span class="card-title card_c title_c">' + index.product_name + '</span><div class="card-title card_c content-energy"><p class="cat z-depth-3">' + index.main_category_fr + '</p><p class="cal z-depth-3">' + index.calorie_100g + ' ' + Kcal + '</p><span class="card-title card_c title_c">' + index.product_name + '</span></div><div class="hover-card"><button class="adding btn"  type="button" data-id="' + index.id + '" data-calorie="' + index.calorie_100g + '" data-name="' + index.product_name + '"> <i class="large material-icons icon-produit">add_circle_outline</i></button></div></div></div>');
+                    if(index.calorie_100g != "Non communiqué") {
+                        $('.searching-panel').append('<div id="' + index.id + '" class="item col s6 m4 l3"><div class="card product"><div class="card-image produit"><img src="' + index.image_small_url + '" height="150" alt="image de ' + index.product_name + '"><span class="card-title card_c title_c">' + index.product_name + '</span><div class="card-title card_c content-energy"><p class="cat z-depth-3">' + index.main_category_fr + '</p><p class="cal z-depth-3">' + index.calorie_100g + ' ' + Kcal + '</p><span class="card-title card_c title_c">' + index.product_name + '</span></div><div class="hover-card"><button class="adding btn"  type="button" data-id="' + index.id + '" data-calorie="' + index.calorie_100g + '" data-name="' + index.product_name + '"> <i class="large material-icons icon-produit">add_circle_outline</i></button></div></div></div>');
                     }
-                });
+                    });
                 $('.adding').bind("click", function(e) {
                     listId.splice(x, 0, $(this).attr('data-id'));
                     listNames.splice(x, 0, $(this).attr('data-name'));
+                    var filtre = $(this).attr('data-calorie');
                     if ($(this).attr('data-calorie') == "Non communiqué") {
+                        filtre = 0;
                         listCalories.splice(x, 0, 0);
                     } else {
                         listCalories.splice(x, 0, parseInt($(this).attr('data-calorie')));
                     }
+                    if($('.article_list').hasClass('empty')){
+                        $('.article_list').append('<div class="element-ref '+x+'">' + $(this).attr('data-name') + '<span class="pull-right">' + filtre + ' Kcal</span></div>');
+                        $('.article_list').removeClass('empty');
+                    }
+                    else {
+                        var t = x - 1;
+                        $('.'+t+'').before('<div class="element-ref '+x+'">' + $(this).attr('data-name') + '<span class="pull-right">' + filtre + ' Kcal</span></div>');
+                    }
                     x++;
                     CalorieUtilise = listCalories.join(' + ');
                     CalorieUtilise = eval(CalorieUtilise);
-                    max = CalorieMax / CalorieMax * 100;
-                    utilise = CalorieUtilise / max * 100;
-                    besoinKcal = CalorieMax - CalorieUtilise;
-                    besoinRestant = max - utilise;
+                    var max = CalorieMax / CalorieMax * 100;
+                    var besoinKcal = CalorieMax - CalorieUtilise;
+                    var utilise = CalorieUtilise / CalorieMax * 100;
+                    var besoinRestant = max - utilise;
                     caloriePie(CalorieUtilise, besoinKcal, utilise, besoinRestant);
-                    console.log(CalorieUtilise);
-                    console.log(listId);
-                    console.log(listNames);
-                    console.log(listCalories);
+                    console.log(utilise);
                 });
                 $('.autocomplete').autocomplete({
                     data: complete,
-                    limit: 10,
+                    limit: 14,
                     onAutocomplete: function(val) {
 
                         searchingProduct(val);
@@ -192,7 +267,7 @@ function caloriePie(Kcal, besoinK, utile, besoin) {
     var pie = new d3pie("CalorieChart", {
         "header": {
             "title": {
-                "text": "Comparaison de Calorie",
+                "text": "Total des Calories",
                 "fontSize": 24,
                 "font": "open sans"
             },
@@ -277,10 +352,10 @@ function caloriePie(Kcal, besoinK, utile, besoin) {
     });
     if (CalorieUtilise > CalorieMax) {
         var besoinKr = besoinK * -1;
-        var $toastContent = $('<span>' + besoinKr + ' Kcal en trop</span>');
-        Materialize.toast($toastContent, 1500);
+        var toastContent = $('<span>' + besoinKr + ' Kcal en trop</span>');
+        Materialize.toast(toastContent, 1500);
     } else {
-        $('#graphique').append('<p>' + besoinK + ' Kcal Restant</p>')
+        $('#graphique').append('<h2>' + besoinK + ' Kcal Restant</h2>')
     }
 }
 
@@ -290,7 +365,7 @@ function originalPie() {
     var pie = new d3pie("CalorieChart", {
         "header": {
             "title": {
-                "text": "Comparaison de Calorie",
+                "text": "Total des Calories",
                 "fontSize": 24,
                 "font": "open sans"
             },
@@ -303,7 +378,7 @@ function originalPie() {
         },
         "size": {
             "canvasHeight": 200,
-            "canvasWidth": 300,
+            "canvasWidth": 200,
             "pieInnerRadius": "36%",
             "pieOuterRadius": "88%"
         },

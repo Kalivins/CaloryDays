@@ -9,16 +9,21 @@ body {
 
 .logo {
   height: 50px;
-  display: flex;
   justify-content: center;
   align-content: center;
-  background-color: #ff7043;
   top: 0px;
+  font-size: 25px;
   position: sticky;
   z-index: 100; }
+  .logos{
+    margin-top: -27px;
+  }
+@media screen and (max-width: 500px) {
+  .description {
+    padding-top: -45px;
+    } }  
+  
 
-.titre-logo {
-  color: black !important; }
 
 nav {
   background-color: #ff7043 !important;
@@ -81,7 +86,7 @@ nav a {
   display: flex; }
 
 .produit:hover .hover-card button {
-  background-color: rgba(255, 204, 128, 0.6); }
+  background-color: rgba(235, 222, 240, 0.6); }
 
 .hover-card button:active {
   background-color: #fff; }
@@ -111,8 +116,9 @@ nav a {
   height: 100%; }
 
 .search {
-  top: 50px;
+
   width: 500px;
+
   display: flex;
   justify-content: center; }
 
@@ -182,25 +188,32 @@ nav a {
 
 .cat {
   font-size: 15px;
+    padding-left: 5px;
+  padding-right: 5px;
   position: absolute;
-  background-color: #ff7043;
-  color: black !important;
+  background-color: #ab47bc;
+  color: white !important;
   top: 0;
   left: 0; }
 
 .cal {
   font-size: 15px;
   position: absolute;
+  padding-left: 5px;
+  padding-right: 5px;
   top: 25px;
   right: 0;
-  background-color: white;
-  color: black !important; }
+  background-color: grey;
+  color: white !important; }
 
 .pagination {
   margin: 0;
   padding: 0; }
 
 .pag form {
+  padding-top: 10px;
+  padding-bottom: 10px;
+
   display: flex;
   justify-content: center; }
 
@@ -210,10 +223,9 @@ nav a {
   display: inline-block;
   font-size: 1.2rem;
   padding: 0 10px;
-  line-height: 30px;
-  margin: 0; }
+  line-height: 30px; }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1170px) {
   .lettre {
     border: 0px solid transparent;
     color: #444;
@@ -225,11 +237,10 @@ nav a {
   margin-bottom: 0px !important; }
 
 .refrigerateur {
-  border: 10px solid #263238;
-  background-color: #ff7043;
+  
+ 
   height: 200px;
-  border-top-right-radius: 5%;
-  border-top-left-radius: 5%;
+
   padding-top: 10px;
   color: #263238;
   overflow: auto; }
@@ -255,5 +266,7 @@ nav a {
 
 #list_recette .card-content {
   color: black !important; }
+
+
 
 /*# sourceMappingURL=style.css.map */
