@@ -15,6 +15,14 @@ function listRecipes()
     return $posts;
 
 }
+function searchRecipe($search)
+{
+    $postRecipes= new \Ksr\MyFridgeFood\Model\PostRecipe();
+
+    $posts = $postRecipes->searchingRecipes($search);
+
+    return $posts;
+}
 function addRecipe()
 {
     $postRecipe = new \Ksr\MyFridgeFood\Model\PostRecipe();

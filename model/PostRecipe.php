@@ -9,10 +9,22 @@ class PostRecipe extends Bdd
     public function getRecipes()
     {
         $pdo = $this->dbConnect();
-        $req = $pdo->query('SELECT id_recette, preparation, nom_recette, photo FROM recette ORDER BY id_recette LIMIT 0,30');
+        $req = $pdo->query('SELECT id_recette, preparation, difficulty, time_prep, person_for, nom_recette, photo FROM recette ORDER BY id_recette LIMIT 0,30');
         $result = $req->fetchAll();
 
         return $result;
+    }
+    public function searchingRecipes($search)
+    {
+        $pdo = $this->dbConnect();
+        $searching = '%'.$search.'%';
+        $posts = $pdo->prepare('SELECT id_recette, nom_recette, difficulty, time_prep, person_for, preparation, photo FROM recette WHERE nom_recette LIKE :search LIMIT 30');
+
+        $posts->bindParam(':search', $searching);
+        $posts->execute();
+        $post = $posts->fetchAll();
+
+        return $post;
     }
     public function setRecipes()
     {

@@ -17,24 +17,34 @@ body {
 }
 
 .logo {
-    height: 50px;
+    height: 70px;
     display: flex;
     justify-content: center;
     align-content: center;
-    background-color: $orange;
     top: 0px;
     position: sticky;
     z-index: 100;
+}
+
+.logos {
+    background-color: rgba(242, 204, 81, 0.8) !important;
 }
 
 .titre-logo {
     @include black();
 }
 
+.logo-image {
+    margin-bottom: -25px;
+}
+
+.navigatio {
+    background-color: #DB9435 !important;
+}
+
 nav {
-    background-color: $orange !important;
     @include black();
-    top: 50px;
+    top: 70px;
     position: sticky;
     z-index: 100;
     margin-bottom: 20px;
@@ -45,11 +55,10 @@ nav a {
 }
 
 .description {
-    height: 100px;
+    height: 400px;
     background-color: #ECEFF1;
     color: #33691E;
     text-align: center;
-    padding-top: 40px;
     font-size: 20px;
 }
 
@@ -141,10 +150,7 @@ nav a {
 }
 
 .search {
-    position: fixed;
-    top: 50px;
     width: 500px;
-    z-index: 98;
     display: flex;
     justify-content: center;
 }
@@ -324,4 +330,57 @@ nav a {
 
 #list_recette .card-content {
     @include black();
+}
+
+.donnee_rec {
+    display: flex;
+    flex-direction: column;
+}
+
+.postit {
+    line-height: 1;
+    text-align: center;
+    width: 100%;
+    min-height: 10px;
+    max-height: 250px;
+    position: relative;
+    border: 1px solid #E8E8E8;
+    font-family: 'Reenie Beanie';
+    font-size: 22px;
+    border-bottom-right-radius: 60px 5px;
+    display: inline-block;
+    background: #ffff88;
+    /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(81%, #ffff88), color-stop(82%, #ffff88), color-stop(82%, #ffff88), color-stop(100%, #ffffc6));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%);
+    /* IE10+ */
+    background: linear-gradient(135deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%);
+    /* W3C */
+    /* IE6-9 fallback on horizontal gradient */
+}
+
+.postit:after {
+    position: absolute;
+    z-index: -1;
+    right: -0px;
+    bottom: 20px;
+    width: 200px;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 15px 5px rgba(0, 0, 0, 0.40);
+    -moz-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+    -webkit-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+    -o-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+    -ms-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+    transform: matrix(-1, -0.1, 0, 1, 0, 0);
+}
+
+.nom_recette {
+    font-size: 35px;
 }

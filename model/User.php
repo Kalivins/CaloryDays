@@ -48,18 +48,45 @@ class User extends Bdd
     public function checkUser(){
         $pdo = $this->dbConnect();
     }
+    public function dateToMysql($date)
+    {
+        $date_noscrapped = explode(',', $date);
+        var_dump($date_noscrapped);
+        $months = [
+            1 => "January",
+            2 => "February",
+            3 => "March",
+            4 => "April",
+            5 => "May",
+            6 => "June",
+            7 => "July",
+            8 => "August",
+            9 => "September",
+            10 => "October",
+            11 => "November",
+            12 => "December"
+        ];
+        foreach ($months as $key=>$value)
+        {
+            if ($date_month == $value)
+            {
+                $month = $key;
+            }
+        }
+    }
     public function register()
     {
         $pdo = $this->dbConnect();
 
         $mdp = hash('sha256', $_POST['mdp']);
+        $date = $this->dateToMysql($_POST['date_naissance']);
 
         $post = $pdo->prepare('INSERT INTO user (nom, prenom, pseudo, date_naissance, email, mdp) VALUES (:nom, :prenom, :pseudo, :date_naissance, :email, :mdp)');
 
         $post->bindParam(':nom', $_POST['nom']);
         $post->bindParam(':prenom', $_POST['prenom']);
         $post->bindParam(':pseudo', $_POST['pseudo']);
-        $post->bindParam(':date_naissance', $_POST['date_naissance']);
+        $post->bindParam(':date_naissance', $date);
         $post->bindParam(':email', $_POST['email']);
         $post->bindParam(':mdp', $mdp);
         $post->execute();

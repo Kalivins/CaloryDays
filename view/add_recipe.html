@@ -3,6 +3,9 @@
  <title>Ajouter une Recette</title>
  {% endblock %}
  {% block content %}
+ {% if session != true %}
+ <p>Connectez-vous pour accéder à cette fonctionnalité</p>
+ {% else %}
  <div id="products">
      <div class="searching-panel row">
      </div>
@@ -18,33 +21,42 @@
      <button type="button" class="reset">Reset</button>
  </div>
  <div class="container">
+ <div class="liste_nom"></div>
  <form enctype="multipart/form-data" action="{{locate}}/MyFridgeFood/add_recipe/{{session.id}}" class="adding_recipe" method="post">
-     <div class="input-field">
-     <label for="nom_recette">Nom de la recette</label>
-        <input type="text" name="nom_recette" id="nom_recette">
-     </div>
-     <br/>
-     <div class="liste_nom"></div>
-     <div class="input-field">
-        <input type="text" name="time_prep" id="time"> <label for="time">Temps de préparation</label>
-     </div>
-     <div class="input-field">
-        <input type="text" name="person_for" id="person"> <label for="person">Pour combien de personnes</label>
-     </div>
-     <div class="input-field">
-     <select name="difficulty" id="diff">
-         <option value="" disabled selected>Difficulté de la recette</option>
-         <option value="Facile">Facile</option>
-         <option value="Normal">Normal</option>
-         <option value="Intermédiaire">Intermédiaire</option>
-         <option value="Expert">Expert</option>
-     </select>
-     </div>
-     <div class="input-field">
-     <label for="preparation">Préparation de la recette</label>
-     <textarea type="text" name="preparation" id="preparation"></textarea>
-     </div>
-     <br/>
+    <ul class="stepper horizontal">
+    <li class="step active">
+            <div class="step-title waves-effect waves-dark">Infos de la recette</div>
+            <div class="step-content">
+        <div class="input-field">
+        <label for="nom_recette">Nom de la recette</label>
+            <input type="text" name="nom_recette" id="nom_recette">
+        </div>
+        <br/>
+        <div class="input-field">
+            <input type="text" name="time_prep" id="time"> <label for="time">Temps de préparation</label>
+        </div>
+        <div class="input-field">
+            <input type="text" name="person_for" id="person"> <label for="person">Pour combien de personnes</label>
+        </div>
+        </div>
+     </li>
+     <li class="step">
+            <div class="step-title waves-effect waves-dark">Difficulté et préparation de la recette</div>
+            <div class="step-content">
+        <div class="input-field">
+            <select name="difficulty" id="diff">
+                <option value="" disabled selected>Difficulté de la recette</option>
+                <option value="Facile">Facile</option>
+                <option value="Normal">Normal</option>
+                <option value="Intermédiaire">Intermédiaire</option>
+                <option value="Expert">Expert</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <label for="preparation">Préparation de la recette</label>
+        <textarea type="text" name="preparation" id="preparation"></textarea>
+        </div>
+        <br/>
      <div class="input-field">
         <input type="file" id="photo" name="file"> <label for="photo"> Image de votre recette </label>
      </div>
@@ -53,8 +65,12 @@
      <div class="input-field">
      <input type="submit" class="btn" value="submit" name="submit">
      </div>
+     </div>
+     </li>
+     </ul>
  </form>
  </div>
+ {% endif %}
  {% endblock %}
      {% block footer %}
      <script type="text/javascript">

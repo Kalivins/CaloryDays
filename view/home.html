@@ -2,52 +2,69 @@
 <title>Bienvenue sur MyFridgeFood</title>
 {% endblock head %} {% block landing %}
 <section class="description">
-    Bienvenue dans CalorysDays pour gérer vos envies !
+        <div class="carousel carousel-slider center" data-indicators="true">
+                <div class="carousel-item red white-text">
+                  <img src="http://static.cuisineaz.com/610x610/i99425-hamburger.jpg" alt="hambourger">
+                  <h2>First Panel</h2>
+                  <p class="white-text">This is your first panel</p>
+                </div>
+                <div class="carousel-item amber white-text">
+                    <img src="http://www.pizzaduroy.fr/assets/images/slider/5.jpg" alt="ji">
+                  <h2>Second Panel</h2>
+                  <p class="white-text">This is your second panel</p>
+                </div>
+                <div class="carousel-item green white-text">
+                    <img src="http://www.moulinex.fr/medias/Entete-Soupe2.jpg?context=bWFzdGVyfFZpc3VlbHMgQUNUVVN8MjE2NTMzfGltYWdlL2pwZWd8aDQzL2hkNC84ODQ4ODIxMzU0NTI2LmpwZ3xhZjJjN2FhMTdlYjU2YjkzNjliODJjYWM0OWE5MjhiNzJlYzY4YjcyZGZlOTg3YThjMzEyYzQ2ZDIyZmM5MTAz" alt="">
+                  <h2>Third Panel</h2>
+                  <p class="white-text">This is your third panel</p>
+                </div>
+                <div class="carousel-item blue white-text" >
+                    <img src="http://www.bistrotdesquais.com/images/slider/restaurant-chalonnes-49-le-bistrot-des-quais12.jpg" alt="carp">
+                  <h2>Fourth Panel</h2>
+                  <p class="white-text">This is your fourth panel</p>
+                </div>
+              </div>
 </section>
 {% endblock %} {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col s12 m4 l4">
+        <div class="col s6 m6 l6">
             <div class="card menu-home purple lighten-5">
                 <div class="card-content cardcontent red-text">
-                    <span class="card-title center">Calorie du jour</span>
+                    <span class="card-title center">Calcul de calorie</span>
                 </div>
                 <div class="card-action">
-                    <a href="energy" class="waves-effect waves-light btn">Vérifier</a>
+                    <a href="energy" class="waves-effect waves-light btn">Accéder</a>
                 </div>
             </div>
         </div>
-        <div class="col s12 m4 l4">
+        <div class="col s6 m6 l6">
             <div class="card menu-home purple lighten-5">
                 <div class="card-content cardcontent grey-text">
-                    <span class="card-title center">Ma consommation annuelle</span>
+                    <span class="card-title center">Ajouter une recette</span>
                 </div>
                 <div class="card-action">
+                        {% if session.result != true %}
+                        <a href="#connexion" class="waves-effect waves-light modal-trigger btn">Connectez-vous</a>
+                        {% else %}
                     <a href="add_recipe" class="waves-effect waves-light btn">Accéder</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
-        <div class="col s12 m4 l4">
-            <div class="card menu-home purple lighten-5">
-                <div class="card-content cardcontent grey darken-3 white-text">
-                    <span class="card-title center">Ma liste de course</span>
-                </div>
-                <div class="card-action center-align">
-                    <a href="fridge" class="waves-effect waves-light btn ">Accéder</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <div class="container search">
     <div class="row">
         <div class="input-field l12">
-            <input type="text" id="autocomplete-input" class="search2 autocomplete">
-            <label for="autocomplete-input" class="search1">Recherche</label>
+            <form action="http://localhost/MyFridgeFood/search_r" method="post" class="filters">
+                <input type="text" name="search" id="autocomplete-input" class="search2 autocomplete-recipe">
+                <label for="autocomplete-input" class="search1">Recherche</label>
+            </form>
         </div>
     </div>
 </div>
 <div class="row">
+    <div class="searching-recipe">
     {% for re in recipes %}
     {% for recipe in re %}
     <div class="col s12 m4 l3">
@@ -57,8 +74,8 @@
                 <span class="card-title title-card">{{ recipe.nom_recette }}</span>
             </div>
             <div class="card-content">
-                <p class="truncate">{{ recipe.preparation }}</p>
-            </div>
+                    <p class="truncate donnee_rec"><span><i class="material-icons">keyboard_arrow_right</i> {{ recipe.difficulty }}</span><br/><span><i class="material-icons">access_alarm</i> {{ recipe.time_prep }}</span> <span><i class="material-icons">group</i> {{ recipe.person_for}} personnes</span></p>
+                </div>
             <div class="card-action actioncard">
                     <a class="btn" href="recipe/{{ recipe.id_recette }}">Voir la recette</a>
             </div>
@@ -66,6 +83,7 @@
     </div>
     {% endfor %}
     {% endfor %}
+    </div>
 </div>
 
 {% endblock content %}

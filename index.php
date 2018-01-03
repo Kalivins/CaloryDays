@@ -133,6 +133,14 @@ $router->map( 'POST', '/search', function() {
 
 });
 
+$router->map( 'POST', '/search_r', function() {
+
+    $recipes = searchRecipe($_POST['search']);
+
+    echo json_encode($recipes);
+
+});
+
 $router->map( 'POST', '/connexion', function() {
 
     global $twig;

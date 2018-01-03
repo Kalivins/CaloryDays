@@ -8,27 +8,29 @@ body {
   font-family: coolvetica, sans-serif; }
 
 .logo {
-  height: 50px;
+  height: 70px;
+  display: flex;
   justify-content: center;
   align-content: center;
   top: 0px;
-  font-size: 25px;
   position: sticky;
   z-index: 100; }
-  .logos{
-    margin-top: -27px;
-  }
-@media screen and (max-width: 500px) {
-  .description {
-    padding-top: -45px;
-    } }  
-  
 
+.logos {
+  background-color: rgba(242, 204, 81, 0.8) !important; }
+
+.titre-logo {
+  color: black !important; }
+
+.logo-image {
+  margin-bottom: -25px; }
+
+.navigatio {
+  background-color: #DB9435 !important; }
 
 nav {
-  background-color: #ff7043 !important;
   color: black !important;
-  top: 50px;
+  top: 70px;
   position: sticky;
   z-index: 100;
   margin-bottom: 20px; }
@@ -37,11 +39,10 @@ nav a {
   color: #263238 !important; }
 
 .description {
-  height: 100px;
+  height: 400px;
   background-color: #ECEFF1;
   color: #33691E;
   text-align: center;
-  padding-top: 40px;
   font-size: 20px; }
 
 .menu-home {
@@ -86,7 +87,7 @@ nav a {
   display: flex; }
 
 .produit:hover .hover-card button {
-  background-color: rgba(235, 222, 240, 0.6); }
+  background-color: rgba(255, 204, 128, 0.6); }
 
 .hover-card button:active {
   background-color: #fff; }
@@ -116,9 +117,7 @@ nav a {
   height: 100%; }
 
 .search {
-
   width: 500px;
-
   display: flex;
   justify-content: center; }
 
@@ -188,32 +187,25 @@ nav a {
 
 .cat {
   font-size: 15px;
-    padding-left: 5px;
-  padding-right: 5px;
   position: absolute;
-  background-color: #ab47bc;
-  color: white !important;
+  background-color: #ff7043;
+  color: black !important;
   top: 0;
   left: 0; }
 
 .cal {
   font-size: 15px;
   position: absolute;
-  padding-left: 5px;
-  padding-right: 5px;
   top: 25px;
   right: 0;
-  background-color: grey;
-  color: white !important; }
+  background-color: white;
+  color: black !important; }
 
 .pagination {
   margin: 0;
   padding: 0; }
 
 .pag form {
-  padding-top: 10px;
-  padding-bottom: 10px;
-
   display: flex;
   justify-content: center; }
 
@@ -237,10 +229,11 @@ nav a {
   margin-bottom: 0px !important; }
 
 .refrigerateur {
-  
- 
+  border: 10px solid #263238;
+  background-color: #ff7043;
   height: 200px;
-
+  border-top-right-radius: 5%;
+  border-top-left-radius: 5%;
   padding-top: 10px;
   color: #263238;
   overflow: auto; }
@@ -267,6 +260,53 @@ nav a {
 #list_recette .card-content {
   color: black !important; }
 
+.donnee_rec {
+  display: flex;
+  flex-direction: column; }
 
+.postit {
+  line-height: 1;
+  text-align: center;
+  width: 100%;
+  min-height: 10px;
+  max-height: 250px;
+  position: relative;
+  border: 1px solid #E8E8E8;
+  font-family: 'Reenie Beanie';
+  font-size: 22px;
+  border-bottom-right-radius: 60px 5px;
+  display: inline-block;
+  background: #ffff88;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(81%, #ffff88), color-stop(82%, #ffff88), color-stop(82%, #ffff88), color-stop(100%, #ffffc6));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%);
+  /* IE10+ */
+  background: linear-gradient(135deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%);
+  /* W3C */
+  /* IE6-9 fallback on horizontal gradient */ }
+
+.postit:after {
+  position: absolute;
+  z-index: -1;
+  right: -0px;
+  bottom: 20px;
+  width: 200px;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 15px 5px rgba(0, 0, 0, 0.4);
+  -moz-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+  -webkit-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+  -o-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+  -ms-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+  transform: matrix(-1, -0.1, 0, 1, 0, 0); }
+
+.nom_recette {
+  font-size: 35px; }
 
 /*# sourceMappingURL=style.css.map */

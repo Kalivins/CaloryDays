@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $('.modal').modal();
+    $('.carousel.carousel-slider').carousel({ full_width: true });
     $('.filters').submit(function(e) {
         e.preventDefault();
     });
@@ -12,9 +13,6 @@ $(document).ready(function() {
     $('.date-picker').pickadate({
         selectMonths: true,
         selectYears: 15,
-        today: 'Today',
-        clear: 'Clear',
-        close: 'Ok',
         closeOnSelect: false
     });
 
@@ -29,6 +27,12 @@ $(document).ready(function() {
         var search = $('.searched').val();
         if (search.length >= 3) {
             searchingProduct(search);
+        }
+    });
+    $('.autocomplete-recipe').keypress(function(e) {
+        var search = $('.search2').val();
+        if (search.length >= 3) {
+            searchingRecipe(search);
         }
     });
     $("#register").validate({
@@ -263,6 +267,39 @@ function searchingProduct(search) {
     });
 }
 
+function searchingRecipe(search) {
+    $.ajax({
+        url: "http://localhost/MyFridgeFood/search_r",
+        type: "POST",
+        data: {
+            search: search,
+        },
+        dataType: "json",
+        success: function(datat) {
+            $('.searching-recipe').fadeOut(400, "linear", function() {
+
+                $('.searching-recipe').html('');
+                var complete = {};
+
+                datat.forEach(function(index) {
+                    complete[index.nom_recette] = 'http://localhost/MyFridgeFood/upload/'+index.photo+'.jpg';
+                        $('.searching-recipe').append('<div class="col s12 m4 l3"><div class="card products"><div class="card-image"><img src="http://localhost/MyFridgeFood/upload/'+index.photo+'.jpg" width="300" height="250" alt="image de '+index.nom_recette+'"><span class="card-title title-card">'+index.nom_recette+'</span></div><div class="card-content"><p class="truncate">'+index.preparation+'</p></div><div class="card-action actioncard"><a class="btn" href="recipe/'+index.id_recette+'">Voir la recette</a></div></div></div>');
+                    });
+                $('.autocomplete-recipe').autocomplete({
+                    data: complete,
+                    limit: 14,
+                    onAutocomplete: function(val) {
+
+                        searchingRecipe(val);
+                    },
+                    minLength: 2,
+                });
+
+            });
+            $('.searching-recipe').fadeIn(400, "linear");
+        }
+    });
+}
 function caloriePie(Kcal, besoinK, utile, besoin) {
     $('#graphique').html('');
     $('#graphique').append('<div id="CalorieChart"></div>');
