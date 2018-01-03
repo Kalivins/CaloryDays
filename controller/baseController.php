@@ -23,10 +23,10 @@ function addRecipe()
 
     return $posts;
 }
-function viewRecipe($id)
+function viewRecipe()
 {
     $postRecipe = new \Ksr\MyFridgeFood\Model\PostRecipe();
-    $post = $postRecipe->getRecipe($id);
+    $post = $postRecipe->getRecipe();
     
     return $post;
 }

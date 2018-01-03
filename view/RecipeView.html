@@ -5,7 +5,7 @@
       {% block content %}
        <div class="row">
         <div class="col s12 m12 l12">
-            <img src="{{ recipe_user.photo }}" width="300" height="250" alt="image de {{ recipe_user.nom_recette }}">
+            <img src="{{locate}}/MyFridgeFood/upload/{{ recipe_user.photo }}.jpg" width="300" height="250" alt="image de {{ recipe_user.nom_recette }}">
             <p>Ajouté par: {{ recipe_user.pseudo }}</p>
             <p>{{ recipe.nom_recette }}</p>
                 <p>Ingrédients: </p>

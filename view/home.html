@@ -60,9 +60,7 @@
                 <p class="truncate">{{ recipe.preparation }}</p>
             </div>
             <div class="card-action actioncard">
-                <form action="recipe/{{ recipe.id_recette }}" method="POST">
-                    <button name="id" value="{{ recipe.id_recette }}" type="submit">Voir la recette</button>
-                </form>
+                    <a class="btn" href="recipe/{{ recipe.id_recette }}">Voir la recette</a>
             </div>
         </div>
     </div>

@@ -71,7 +71,7 @@ $router->map( 'POST|GET', '/recipe/[i:id]', function() {
             global $twig;
             global $locate;
     
-            $recipe = viewRecipe($_POST['id']);
+            $recipe = viewRecipe();
             $params = [
                 "locate" => $locate,
                 "recipe_user" => $recipe['recipe_user'],

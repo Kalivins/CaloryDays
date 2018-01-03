@@ -107,8 +107,10 @@ class PostRecipe extends Bdd
         }
         return $id_foods;
     }
-    public function getRecipe($recipeId)
+    public function getRecipe()
     {
+        $id_noscrapped = explode('/', $_GET['url']);
+        $recipeId = intval($id_noscrapped[1]);
         $pdo = $this->dbConnect();
         $req = $pdo->prepare('
         SELECT user.pseudo, user.email, recette.preparation, recette.nom_recette, recette.difficulty, recette.time_prep, recette.person_for, recette.photo 
