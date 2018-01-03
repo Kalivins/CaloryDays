@@ -102,6 +102,8 @@ function alphabet(lettre) {
                 $('.adding').bind("click", function(e) {
                     listId.splice(x, 0, $(this).attr('data-id'));
                     listNames.splice(x, 0, $(this).attr('data-name'));
+                    $('.liste_nom').append($(this).attr('data-name'));
+                    $('.liste_nom').append($(this).attr('data-id'));
                     var filtre = $(this).attr('data-calorie');
                     if ($(this).attr('data-calorie') == "Non communiqué") {
                         filtre = 0;

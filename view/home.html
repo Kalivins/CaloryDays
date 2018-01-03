@@ -48,11 +48,12 @@
     </div>
 </div>
 <div class="row">
-    {% for recipe in recipes %}
+    {% for re in recipes %}
+    {% for recipe in re %}
     <div class="col s12 m4 l3">
         <div class="card products">
             <div class="card-image">
-                <img src="{{ recipe.photo }}" width="300" height="250" alt="image de {{ recipe.nom_recette }}">
+                <img src="http://localhost/MyFridgeFood/upload/{{ recipe.photo }}.jpg" width="300" height="250" alt="image de {{ recipe.nom_recette }}">
                 <span class="card-title title-card">{{ recipe.nom_recette }}</span>
             </div>
             <div class="card-content">
@@ -65,6 +66,7 @@
             </div>
         </div>
     </div>
+    {% endfor %}
     {% endfor %}
 </div>
 

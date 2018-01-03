@@ -161,37 +161,3 @@ call_user_func_array( $match['target'], $match['params'] );
 
 header( $_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
 }
-/*
-    case 'addcomment':
-        include('assets/include/head.php');
-        include('assets/include/nav.php');
-        echo 'Vous avez ajouter un commentaire';
-        include('assets/include/footer.php');
-        break;
-    case 'product':
-        include('assets/include/head.php');
-        include('assets/include/nav.php');
-        echo "Voici un produit";
-        include('assets/include/footer.php');
-        break;
-    case 'energy':
-        include('assets/include/head.php');
-        include('assets/include/nav.php');
-        echo "Voici les calories de vos produits/recettes";
-        include('assets/include/footer.php');
-        break;
-    case 'fridge':
-        include('assets/include/head.php');
-        include('assets/include/nav.php');
-        echo "Bienvenue dans votre frigo";
-        include('assets/include/footer.php');
-        break;
-    case 'deconnexion':
-        break;
-    default:
-        include('assets/include/head.php');
-        include('assets/include/nav.php');
-        echo "Error 404";
-        include('assets/include/footer.php');
-        break;       
-}*/

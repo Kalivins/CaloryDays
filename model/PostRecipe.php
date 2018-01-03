@@ -10,7 +10,7 @@ class PostRecipe extends Bdd
     {
         $pdo = $this->dbConnect();
         $req = $pdo->query('SELECT id_recette, preparation, nom_recette, photo FROM recette ORDER BY id_recette LIMIT 0,30');
-        $result = $req->fetch();
+        $result = $req->fetchAll();
 
         return $result;
     }
@@ -111,7 +111,7 @@ class PostRecipe extends Bdd
     {
         $pdo = $this->dbConnect();
         $req = $pdo->prepare('
-        SELECT user.pseudo, user.email, recette.preparation, recette.nom_recette, recette.photo 
+        SELECT user.pseudo, user.email, recette.preparation, recette.nom_recette, recette.difficulty, recette.time_prep, recette.person_for, recette.photo 
         FROM recette, user
         INNER JOIN user_recette 
         ON user_recette.id_recette = :id
@@ -126,7 +126,8 @@ class PostRecipe extends Bdd
         $req2->bindParam(':id', $recipeId);
         $req2->execute();
         $food_id[] = $req2->fetchAll();
-        
+
+        var_dump($food_id);
         // Welcome to the hell of loops
         foreach($food_id as $ids){
             foreach($ids as $idss){
