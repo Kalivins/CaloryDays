@@ -148,8 +148,7 @@ class PostRecipe extends Bdd
         $req = $pdo->prepare('
         SELECT user.pseudo, user.email, recette.preparation, recette.nom_recette, recette.difficulty, recette.time_prep, recette.person_for, recette.photo 
         FROM recette, user
-        INNER JOIN user_recette 
-        ON user_recette.id_recette = :id
+        WHERE recette.id_recette = :id
         ');
         $req->bindParam(':id', $recipeId);
         $req->execute();
@@ -162,7 +161,6 @@ class PostRecipe extends Bdd
         $req2->execute();
         $food_id[] = $req2->fetchAll();
 
-        var_dump($food_id);
         // Welcome to the hell of loops
         foreach($food_id as $ids){
             foreach($ids as $idss){

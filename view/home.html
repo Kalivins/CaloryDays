@@ -2,44 +2,49 @@
 <title>Bienvenue sur MyFridgeFood</title>
 {% endblock head %} {% block landing %}
 <section class="description">
-        <div class="carousel carousel-slider center" data-indicators="true">
-                <div class="carousel-item red white-text">
-                  <img src="http://static.cuisineaz.com/610x610/i99425-hamburger.jpg" alt="hambourger">
-                  <h2>First Panel</h2>
-                  <p class="white-text">This is your first panel</p>
-                </div>
-                <div class="carousel-item amber white-text">
-                    <img src="http://www.pizzaduroy.fr/assets/images/slider/5.jpg" alt="ji">
-                  <h2>Second Panel</h2>
-                  <p class="white-text">This is your second panel</p>
-                </div>
-                <div class="carousel-item green white-text">
-                    <img src="http://www.moulinex.fr/medias/Entete-Soupe2.jpg?context=bWFzdGVyfFZpc3VlbHMgQUNUVVN8MjE2NTMzfGltYWdlL2pwZWd8aDQzL2hkNC84ODQ4ODIxMzU0NTI2LmpwZ3xhZjJjN2FhMTdlYjU2YjkzNjliODJjYWM0OWE5MjhiNzJlYzY4YjcyZGZlOTg3YThjMzEyYzQ2ZDIyZmM5MTAz" alt="">
-                  <h2>Third Panel</h2>
-                  <p class="white-text">This is your third panel</p>
-                </div>
-                <div class="carousel-item blue white-text" >
-                    <img src="http://www.bistrotdesquais.com/images/slider/restaurant-chalonnes-49-le-bistrot-des-quais12.jpg" alt="carp">
-                  <h2>Fourth Panel</h2>
-                  <p class="white-text">This is your fourth panel</p>
-                </div>
-              </div>
+    <div class=" slides carousel carousel-slider center" data-indicators="true">
+
+        <div class="carousel-item red white-text" style="text-shadow: 1px 1px 1px black; background-image: url(http://static.cuisineaz.com/610x610/i99425-hamburger.jpg); background-repeat:no-repeat; background-size:cover;">
+            <section class="caption center-align">
+                <h2>Bienvenue sur CalorysDays !</h2>
+                <p>Nous espérons que vous passerez un bon moment</p>
+            </section>
+        </div>
+        <div class="carousel-item amber white-text" style="text-shadow: 1px 1px 1px black; background-image: url(http://www.pizzaduroy.fr/assets/images/slider/5.jpg); background-repeat:no-repeat; background-size:cover;">
+            <h2>Calcul de calorie</h2>
+            <p>Est-ce que vous gros ? Calculer vos calories d'alimentation !</p>
+            <a href="energy" class="waves-effect waves-light yellow lighten-2 btn">Accéder</a>
+        </div>
+
+        <div class="carousel-item green white-text" style="text-shadow: 1px 1px 1px black; background-image: url(http://www.moulinex.fr/medias/Entete-Soupe2.jpg?context=bWFzdGVyfFZpc3VlbHMgQUNUVVN8MjE2NTMzfGltYWdlL2pwZWd8aDQzL2hkNC84ODQ4ODIxMzU0NTI2LmpwZ3xhZjJjN2FhMTdlYjU2YjkzNjliODJjYWM0OWE5MjhiNzJlYzY4YjcyZGZlOTg3YThjMzEyYzQ2ZDIyZmM5MTAz); background-repeat:no-repeat; background-size:cover;">
+            <h2 class="white-text">Ajouter une recette</h2>
+            <p class="white-text">Partage ta recette de malade !</p>
+            {% if session.result == true %}
+            <a href="add_recipe" class="waves-effect waves-light yellow lighten-2 btn">Ajouter</a> {% else %}
+            <a href="#connexion" class="waves-effect waves-light modal-trigger btn">Connectez-vous</a> {% endif %}
+        </div>
+        <div class="carousel-item blue white-text" style="background-image: url(https://search.chow.com/thumbnail/1200/0/www.chowstatic.com/assets/recipe_photos/29695_cherry_clafoutis3.jpg); background-repeat:no-repeat; background-size:cover;">
+            <h2 class="white-text">Refrigerateur</h2>
+            <p>Essaie encore !</p>
+            <a href="refrigerateur" class="btn pulse disabled">Non disponible</a>
+        </div>
+    </div>
 </section>
 {% endblock %} {% block content %}
 <div class="container">
     <div class="row">
         <div class="col s6 m6 l6">
-            <div class="card menu-home purple lighten-5">
+            <div class="card menu-home yellow lighten-5">
                 <div class="card-content cardcontent red-text">
-                    <span class="card-title center">Calcul de calorie</span>
+                    <span class="card-title center" >Calcul de calorie</span>
                 </div>
                 <div class="card-action">
-                    <a href="energy" class="waves-effect waves-light btn">Accéder</a>
+                    <a href="energy" class="waves-effect waves-light btn yellow lighten-2" style="color: white !important; text-shadow: 1px 1px 1px black;">Accéder</a>
                 </div>
             </div>
         </div>
         <div class="col s6 m6 l6">
-            <div class="card menu-home purple lighten-5">
+            <div class="card menu-home yellow lighten-5">
                 <div class="card-content cardcontent grey-text">
                     <span class="card-title center">Ajouter une recette</span>
                 </div>
@@ -47,21 +52,21 @@
                         {% if session.result != true %}
                         <a href="#connexion" class="waves-effect waves-light modal-trigger btn">Connectez-vous</a>
                         {% else %}
-                    <a href="add_recipe" class="waves-effect waves-light btn">Accéder</a>
+                    <a href="add_recipe" class="waves-effect waves-light btn yellow lighten-2" style="color: white !important; text-shadow: 1px 1px 1px black;">Accéder</a>
                     {% endif %}
                 </div>
             </div>
         </div>
 </div>
-<div class="search">
-    <div class="row">
-        <div class="input-field">
-            <form action="http://localhost/MyFridgeFood/search_r" method="post" class="filters">
-                <input type="text" name="search" id="autocomplete-input" class="search2 autocomplete-recipe">
-                <label for="autocomplete-input" class="search1">Recherche</label>
-            </form>
-        </div>
-                <form action="{{ locate }}/MyFridgeFood/difficulty" class="filters" method="post">
+<div class="container">
+    <div class="search">
+        <div class="row">
+            <div class="input-field col l12">
+                <form action="http://localhost/MyFridgeFood/search_r" method="post" class="filters col s12 m12 l12">
+                    <input type="text" name="search" id="autocomplete-input" class="search2 autocomplete-recipe">
+                    <label for="autocomplete-input" class="search1">Recherche</label>
+                </form>
+                <form action="{{ locate }}/MyFridgeFood/difficulty" class="filters col s6 m6 l6" method="post">
                     <div class="input-field">
                         <select name="difficulty" id="diff">
                             <option value="" disabled selected>Sélectionner une difficulté</option>
@@ -72,7 +77,7 @@
                         </select>
                     </div>
                 </form>
-                 <form action="{{ locate }}/MyFridgeFood/category_r" class="filters" method="post">
+                <form action="{{ locate }}/MyFridgeFood/category_r" class="filters col s6 m6 l6" method="post">
                     <div class="input-field">
                         <select name="category" id="category_r">
                             <option value="" disabled selected>Sélectionner une catégorie</option>
@@ -85,10 +90,12 @@
                             <option value="Végétarien">Végétarien</option>
                         </select>
                     </div>
-                 </form>
+                </form>
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 <div class="row">
     <div class="searching-recipe">
@@ -96,15 +103,14 @@
     {% for recipe in re %}
     <div class="col s12 m4 l3">
         <div class="card products">
-            <div class="card-image">
-                <img src="http://localhost/MyFridgeFood/upload/{{ recipe.photo }}.jpg" width="300" height="250" alt="image de {{ recipe.nom_recette }}">
-                <span class="card-title title-card">{{ recipe.nom_recette }}</span>
+            <div class="card-image" style="background-image: url(http://localhost/MyFridgeFood/upload/{{recipe.photo}}.jpg); background-repeat:no-repeat; background-size:cover; height:250px;">
+                <span class="card-title title-card" style="text-shadow: 1px 1px 1px black;">{{ recipe.nom_recette }}</span>
             </div>
             <div class="card-content">
                     <p class="truncate donnee_rec"><span><i class="material-icons">keyboard_arrow_right</i> {{ recipe.difficulty }}</span><br/><span><i class="material-icons">access_alarm</i> {{ recipe.time_prep }}</span> <span><i class="material-icons">group</i> {{ recipe.person_for}} personnes</span></p>
                 </div>
             <div class="card-action actioncard">
-                    <a class="btn" href="recipe/{{ recipe.id_recette }}">Voir la recette</a>
+                    <a class="btn yellow lighten-2" style="text-shadow: 1px 1px 1px black;" href="recipe/{{ recipe.id_recette }}">Voir la recette</a>
             </div>
         </div>
     </div>

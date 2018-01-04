@@ -82,10 +82,10 @@ function searchCategory($category)
 
     return $post;
 }
-function viewProduct($id)
+function viewProduct()
 {
     $postProduct = new \Ksr\MyFridgeFood\Model\PostProducts();
-    $post = $postProduct->getProduct($id);
+    $post = $postProduct->getProduct();
     
     return $post;
 }

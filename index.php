@@ -83,6 +83,22 @@ $router->map( 'POST|GET', '/recipe/[i:id]', function() {
             echo $template->render($params);
 });
 
+$router->map( 'POST|GET', '/product/[i:id]', function() {
+
+    global $twig;
+    global $locate;
+
+    $product = viewProduct();
+    $params = [
+        "locate" => $locate,
+        "product" => $product,
+        "session" => $_SESSION
+
+    ];
+    $template = $twig->load('productView.html');
+    echo $template->render($params);
+});
+
 $router->map( 'POST|GET', '/energy', function() {
     
             global $twig;

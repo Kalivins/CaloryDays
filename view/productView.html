@@ -1,0 +1,229 @@
+{% extends 'template.html' %}
+{% block head %}
+<title>{{ product.product_name }}</title>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col s12 m6 l6">
+        {% if product.product_image_url != ""%}
+        <img src="{{product.image_url}}" width="100%" alt="image de {{ product.product_name }}">
+        {% else %}
+        <img src="{{locate}}/MyFridgeFood/assets/img/void.png" width="100%" alt="image de {{ product.product_name }}">
+        {% endif %}
+    </div>
+    <div class="col s12 m6 l6">
+        <p>
+            <span class="nom_produit white-text">{{ product.product_name }}</span>
+        </p>
+        {% if product.ingredients_text != ""%}
+        <ul class="postit">
+            <li><b>Ingrédients :</b> <br>{{ product.ingredients_text }}</a></li>
+        </ul>
+        {% else %}
+        <span> <b>Ingrédients manquant !</b></span>
+        {% endif %}
+    </div>
+    <div class="col s12 m12 l12">
+        <p class="infos">
+            {% if product.allergens_fr != "" %}
+            <span class="allergens"> <b>Allergenes:</b> {{ product.allergens_fr }}</span><br>
+            {% else %}
+            <span><b>Allergenes manquant !</b></span><br>
+            {% endif %}
+            {% if product.brands != "" %}
+            <span class="brands"> <b>Marque:</b> {{ product.brands }}</span><br>
+            {% else %}
+            <span><b>Marque manquante !</b></span>
+            {% endif %}
+            {% if product.quantity != "" %}
+            <span class="quantity"><b>Quantité:</b> {{product.quantity}}</span>
+            {% else %}
+            <span><b>Quantité manquante !</b></span>
+            {% endif %}
+            {% if product.additives_fr != ""%}
+            <span class="additive"> <b>Additifs:</b>
+                <ul>
+                    <li>>{{ product.additives_fr }}</li>
+                </ul>
+            </span><br>
+            {% else %}
+            <span><b>Additifs manquant !</b></span><br>
+            {% endif %}
+            {% if product.nutrition_grade_fr != (0 or "") %}
+            <span><b>Nutri-score: </b></span><br>
+                <img src="https://static.openfoodfacts.org/images/misc/nutriscore-{{product.nutrition_grade_fr}}.svg" alt="Nutri-score de {{product.product_name}}">
+            {% endif %}
+        </p>
+        <p>
+            <table id="nutrition_data_table" class="data_table">
+            <thead class="nutriment_header">
+            <th>
+                Informations nutritionnelles (pour 100 g)</th>
+            </thead>
+            <tbody>
+            {% if product.energy_100g != (0 or "") %}
+            <tr id="nutriment_energy_tr" class="nutriment_main">
+                <td class="nutriment_label">Énergie</td>
+
+                <td class="nutriment_value">{{ product.energy_100g }} kj<br>({{ product.calorie_100g }} kcal)</td>
+            </tr>
+            {% else %}
+            <tr id="nutriment_energy_tr" class="nutriment_main">
+                <td class="nutriment_label">Énergie</td>
+
+                <td class="nutriment_value">Valeur manquante !</td>
+            </tr>
+            {% endif %}
+            {% if product.cholesterol_100g != (0 or "") %}
+            <tr id="nutriment_cholesterol_tr" class="nutriment_main">
+                <td class="nutriment_label">Cholesterol</td>
+
+                <td class="nutriment_value">{{product.cholesterol_100g}} g</td>
+            </tr>
+            {% endif %}
+            {% if product.sucrose_100g != (0 or "") %}
+            <tr id="nutriment_sucrose_tr" class="nutriment_main">
+                <td class="nutriment_label">Sucrose</td>
+
+                <td class="nutriment_value">{{product.sucrose_100g}} g</td>
+            </tr>
+            {% endif %}
+            {% if product.alcohol_100g != (0 or "") %}
+            <tr id="nutriment_alcohol_tr" class="nutriment_main">
+                <td class="nutriment_label">Alcohol</td>
+
+                <td class="nutriment_value">{{product.alcohol_100g}} g</td>
+            </tr>
+            {% endif %}
+            {% if product.lactose_100g != (0 or "") %}
+            <tr id="nutriment_lactose_tr" class="nutriment_main">
+                <td class="nutriment_label">Lactose</td>
+
+                <td class="nutriment_value">{{product.lactose_100g}} g</td>
+            </tr>
+            {% endif %}
+            {% if product.fructose_100g != (0 or "") %}
+            <tr id="nutriment_fructose_tr" class="nutriment_main">
+                <td class="nutriment_label">Fructose</td>
+
+                <td class="nutriment_value">{{product.fructose_100g}} g</td>
+            </tr>
+            {% endif %}
+            {% if product.maltose_100g != (0 or "") %}
+            <tr id="nutriment_maltose_tr" class="nutriment_main">
+                <td class="nutriment_label">Maltose</td>
+
+                <td class="nutriment_value">{{product.maltose_100g}} g</td>
+            </tr>
+            {% endif %}
+            {% if product.fiber_100g != (0 or "") %}
+            <tr id="nutriment_fiber_tr" class="nutriment_main">
+                <td class="nutriment_label">Fibre</td>
+
+                <td class="nutriment_value">{{product.fiber_100g}} g</td>
+            </tr>
+            {% endif %}
+            {% if product.glucose_100g != (0 or "") %}
+            <tr id="nutriment_glucose_tr" class="nutriment_main">
+                <td class="nutriment_label">Glucose</td>
+
+                <td class="nutriment_value">{{product.glucose_100g}} g</td>
+            </tr>
+            {% endif %}
+            {% if product.energy-from-fat_100g != (0 or "") %}
+            <tr id="nutriment_fat_tr" class="nutriment_main">
+                <td class="nutriment_label">Matières grasses / Lipides</td>
+
+                <td class="nutriment_value">{{ product.energy-from-fat_100g }} g</td>
+            </tr>
+            {% else %}
+            <tr id="nutriment_fat_tr" class="nutriment_main">
+                <td class="nutriment_label">Matières grasses / Lipides</td>
+
+                <td class="nutriment_value">Valeur manquante !</td>
+            </tr>
+            {% endif %}
+            {% if product.fat_100g != (0 or "") %}
+            <tr id="nutriment_saturated-fat_tr" class="nutriment_sub">
+                <td class="nutriment_label">dont Acides gras saturés</td>
+
+                <td class="nutriment_value" property="food:saturatedFatPer100g">{{ product.fat_100g }} g</td>
+            </tr>
+            {% else %}
+            <tr id="nutriment_saturated-fat_tr" class="nutriment_sub">
+                <td class="nutriment_label">dont Acides gras saturés</td>
+
+                <td class="nutriment_value" property="food:saturatedFatPer100g">Valeur manquante !</td>
+            </tr>
+            {% endif %}
+            {% if product.carbohydrates_100g != (0 or "") %}
+            <tr id="nutriment_carbohydrates_tr" class="nutriment_main">
+                <td class="nutriment_label">Glucides</td>
+
+                <td class="nutriment_value" property="food:carbohydratesPer100g">{{product.carbohydrates_100g}} g</td>
+            </tr>
+            {% else %}
+            <tr id="nutriment_carbohydrates_tr" class="nutriment_main">
+                <td class="nutriment_label">Glucides</td>
+
+                <td class="nutriment_value" property="food:carbohydratesPer100g">Valeur manquante !</td>
+            </tr>
+            {% endif %}
+            {% if product.sugars_100g != (0 or "") %}
+            <tr id="nutriment_sugars_tr" class="nutriment_sub">
+                <td class="nutriment_label">dont Sucres</td>
+
+                <td class="nutriment_value" property="food:sugarsPer100g">{{product.sugars_100g}} g</td>
+            </tr>
+            {% else %}
+            <tr id="nutriment_sugars_tr" class="nutriment_sub">
+                <td class="nutriment_label">dont Sucres</td>
+
+                <td class="nutriment_value" property="food:sugarsPer100g">Valeur manquante !</td>
+            </tr>
+            {% endif %}
+            {% if product.proteins_100g != (0 or "") %}
+            <tr id="nutriment_proteins_tr" class="nutriment_main">
+                <td class="nutriment_label">Protéines</td>
+
+                <td class="nutriment_value" property="food:proteinsPer100g" content="5.5">{{product.proteins_100g}} g</td>
+            </tr>
+            {% else %}
+            <tr id="nutriment_proteins_tr" class="nutriment_main">
+                <td class="nutriment_label">Protéines</td>
+
+                <td class="nutriment_value" property="food:proteinsPer100g" content="5.5">Valeur manquante !</td>
+            </tr>
+            {% endif %}
+            {% if product.salt_100g != (0 or "") %}
+            <tr id="nutriment_salt_tr" class="nutriment_main">
+                <td class="nutriment_label">Sel</td>
+
+                <td class="nutriment_value" property="food:saltPer100g" content="0.1">{{product.salt_100g}} g</td>
+            </tr>
+            {% else %}
+            <tr id="nutriment_salt_tr" class="nutriment_main">
+                <td class="nutriment_label">Sel</td>
+
+                <td class="nutriment_value" property="food:saltPer100g" content="0.1">{{product.salt_100g}} g</td>
+            </tr>
+            {% endif %}
+            {% if product.sodium_100g != (0 or "") %}
+            <tr id="nutriment_sodium_tr" class="nutriment_sub">
+                <td class="nutriment_label">
+                    Sodium</td>
+                <td class="nutriment_value" property="food:sodiumEquivalentPer100g" content="0.0394">{{product.sodium_100g}} g</td>
+            </tr>
+            {% else %}
+            <tr id="nutriment_sodium_tr" class="nutriment_sub">
+                <td class="nutriment_label">
+                    Sodium</td>
+                <td class="nutriment_value" property="food:sodiumEquivalentPer100g" content="0.0394">Valeur manquante !</td>
+            </tr>
+            {% endif %}
+            </tbody>
+    </table>
+        </p>
+    </div>
+</div>
+{% endblock %}

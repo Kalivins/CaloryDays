@@ -6,25 +6,34 @@
  {% if session != true %}
  <p>Connectez-vous pour accéder à cette fonctionnalité</p>
  {% else %}
- <div id="products">
-     <div class="searching-panel row">
-     </div>
- </div>
- <div class="search col s12 m12 l12">
-     <form class="filters" action="{{ locate }}/MyFridgeFood/search" method="post">
-         <div class="input-field l12">
-             <i class="material-icons prefix">search</i>
-             <input type="search" maxlength="80" size="80" name="search" id="autocomplete-input" class="autocomplete searched">
-             <label for="autocomplete-input">Rechercher un produit</label>
-         </div>
-     </form>
-     <button type="button" class="reset">Reset</button>
- </div>
  <div class="container">
  <div class="liste_nom"></div>
  <form enctype="multipart/form-data" action="{{locate}}/MyFridgeFood/add_recipe/{{session.id}}" class="adding_recipe" method="post">
     <ul class="stepper horizontal">
-    <li class="step active">
+        <li class="step active">
+                <div class="step-title waves-effect waves-dark">Ingrédients</div>
+                <div class="step-content">
+                <div id="products">
+                        <div class="searching-panel row">
+                        </div>
+                    </div>
+                    <div class="search col s12 m12 l12">
+                        <form class="filters" action="{{ locate }}/MyFridgeFood/search" method="post">
+                            <div class="input-field l12">
+                                <i class="material-icons prefix">search</i>
+                                <input type="search" maxlength="80" size="80" name="search" id="autocomplete-input" class="autocomplete searched">
+                                <label for="autocomplete-input">Rechercher un produit</label>
+                            </div>
+                        </form>
+                        <button type="button" class="reset">Reset</button>
+                    </div>
+                    <div class="input-field">
+                            <div class="chips"></div>
+                        </div>
+                        <br/>
+                    </div>
+        </li>
+    <li class="step">
             <div class="step-title waves-effect waves-dark">Infos de la recette</div>
             <div class="step-content">
         <div class="input-field">

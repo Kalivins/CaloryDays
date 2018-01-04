@@ -14,18 +14,18 @@
     <title></title>
 </head>
 
-<body class="grey lighten-1">
+<body class="grey lighten-3">
 
-<div class="row orange accent-2 logo">
+<div class="row logo">
     <div class="col s12 center-align logos">
-        <p class="testes"><img src="{{ locate }}/MyFridgeFood/assets/img/frog.svg" alt="logo" height="50" width="100">CALORYSDAYS</p>
+        <p class="testes"><img src="{{ locate }}/MyFridgeFood/assets/img/frog.svg" alt="logo" height="50" width="100"><span>CALORYSDAYS</span></p>
     </div>
 
 </div>
 {% block landing %}
 {% endblock %}
 <nav>
-    <div class="nav-wrapper orange accent-3">
+    <div class="nav-wrapper yellow accent-1">
         <ul id="nav-mobil" class="left">
             {% if session.result == true %}
             <li><a href="#" data-activates="slide-out" class="collapse waves-effect"><i class="fa fa-bars" aria-hidden="true"></i></a></li>
@@ -182,11 +182,12 @@
 
 
 <footer>
-    <div class="col s12 center-align purple lighten-4 ">
-        <a href="#" class="brand-logo center "><img src="{{ locate }}/MyFridgeFood/assets/img/i3.png" alt="" width="60" height="60" class="responsive-img"><img src="{{ locate }}/MyFridgeFood/assets/img/i5.png" alt="" width="60" height="60" class="responsive-img"><img src="{{ locate }}/MyFridgeFood/assets/img/i4.png" alt="" width="60" height="60" class="responsive-img"></a>
+        <div class="col s12 center-align grey lighten-2">
+            <a href="#" class="brand-logo center "><img src="{{ locate }}/MyFridgeFood/assets/img/romain.png" alt="" width="60" height="60" class="responsive-img"><img src="{{ locate }}/MyFridgeFood/assets/img/kevin.png" alt="" width="60" height="60" class="responsive-img"><img src="{{ locate }}/MyFridgeFood/assets/img/sandrine.png"
+                    alt="" width="60" height="60" class="responsive-img"></a>
 
-    </div>
-</footer>
+        </div>
+    </footer>
 
 <script src="{{locate}}/MyFridgeFood/assets/js/jquery.js"></script>
 <script src="{{locate}}/MyFridgeFood/assets/js/materialize.min.js"></script>

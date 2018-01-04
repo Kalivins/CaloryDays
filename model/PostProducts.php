@@ -15,16 +15,19 @@ class PostProducts extends Bdd
         return $req;
     }
 
-    public function getProduct($productId)
+    public function getProduct()
     {
+        $id_noscrapped = explode('/', $_GET['url']);
+        $productId = intval($id_noscrapped[1]);
         $pdo = $this->dbConnect();
-        $req = $pdo->prepare('SELECT id, product_name, brands, image_url, image_small_url, energy_100g FROM food WHERE id = :id');
+        $req = $pdo->prepare('SELECT id, product_name, brands, main_category_fr, ingredients_text, allergens_fr, additives_fr, nutrition_grade_fr, "energy-from-fat_100g", fat_100g, cholesterol_100g, carbohydrates_100g, sugars_100g, quantity, sucrose_100g, glucose_100g, fructose_100g, lactose_100g, maltose_100g, fiber_100g, proteins_100g, salt_100g, sodium_100g, alcohol_100g, "vitamin-a_100g", "vitamin-d_100g", "vitamin-e_100g", "vitamin-k_100g", "vitamin-c_100g", "vitamin-b1_100g", "nutrition-score-fr_100g", taurine_100g, caffeine_100g, calcium_100g, magnesium_100g, zinc_100g, image_url, image_small_url, energy_100g FROM food WHERE id = :id');
         $req->bindParam(':id', $productId);
         $req->execute();
         $posts = $req->fetch();
 
-        $post = $this->SetValues($posts);
-        return $post;
+            $posts['calorie_100g'] = $this->KjtoKcal($posts['energy_100g']);
+
+        return $posts;
     }
     public function KjtoKcal($Kilojoule){
         $unit_Kcal = 0.239006;
@@ -42,7 +45,7 @@ class PostProducts extends Bdd
             if($product['main_category_fr'] == ""){
                 $product['main_category_fr'] = "Hors Catégorie";
             }
-            if($product['energy_100g'] == "") {
+            if($product['energy_100g'] == "" || $product['energy_100g'] == 0) {
                 $product['energy_100g'] = "Non communiqué";
             }
             if($product['image_small_url'] == ""){
