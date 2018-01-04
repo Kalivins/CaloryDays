@@ -9,7 +9,7 @@ $router = new AltoRouter();
 
 $loader = new Twig_Loader_Filesystem(__DIR__ .'/view');
 $twig = new Twig_Environment($loader, array (
-        'cache' => false,
+        'cache' => true,
 ));
 
 $router->setBasePath('MyFridgeFood/');
