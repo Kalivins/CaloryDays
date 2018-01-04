@@ -53,13 +53,40 @@
             </div>
         </div>
 </div>
-<div class="container search">
+<div class="search">
     <div class="row">
-        <div class="input-field l12">
+        <div class="input-field">
             <form action="http://localhost/MyFridgeFood/search_r" method="post" class="filters">
                 <input type="text" name="search" id="autocomplete-input" class="search2 autocomplete-recipe">
                 <label for="autocomplete-input" class="search1">Recherche</label>
             </form>
+        </div>
+                <form action="{{ locate }}/MyFridgeFood/difficulty" class="filters" method="post">
+                    <div class="input-field">
+                        <select name="difficulty" id="diff">
+                            <option value="" disabled selected>Sélectionner une difficulté</option>
+                            <option class="diff" value="Facile">Facile</option>
+                            <option class="diff" value="Normal">Normal</option>
+                            <option class="diff" value="Intermédiaire">Intermédiaire</option>
+                            <option class="diff" value="Expert">Expert</option>
+                        </select>
+                    </div>
+                </form>
+                 <form action="{{ locate }}/MyFridgeFood/category_r" class="filters" method="post">
+                    <div class="input-field">
+                        <select name="category" id="category_r">
+                            <option value="" disabled selected>Sélectionner une catégorie</option>
+                            <option value="Entrée">Entrée</option>
+                            <option value="Apéritifs">Apéritifs</option>
+                            <option value="Soupes">Soupes</option>
+                            <option value="Plats">Plats</option>
+                            <option value="Viande">Viande</option>
+                            <option value="Dessert">Dessert</option>
+                            <option value="Végétarien">Végétarien</option>
+                        </select>
+                    </div>
+                 </form>
+            </div>
         </div>
     </div>
 </div>

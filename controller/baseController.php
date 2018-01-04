@@ -23,6 +23,20 @@ function searchRecipe($search)
 
     return $posts;
 }
+function searchDiffRecipe($search)
+{
+    $postSearch = new \Ksr\MyFridgeFood\Model\PostRecipe();
+    $post = $postSearch->getByDifficultyRecipes($search);
+
+    return $post;
+}
+function searchCategoryRecipe($search)
+{
+    $postSearch = new \Ksr\MyFridgeFood\Model\PostRecipe();
+    $post = $postSearch->getByCategoryRecipes($search);
+
+    return $post;
+}
 function addRecipe()
 {
     $postRecipe = new \Ksr\MyFridgeFood\Model\PostRecipe();

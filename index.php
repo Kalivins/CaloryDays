@@ -125,6 +125,22 @@ $router->map( 'POST', '/category', function() {
 
 });
 
+$router->map( 'POST', '/difficulty', function() {
+
+    $recipes = searchDiffRecipe($_POST['difficulty']);
+
+    echo json_encode($recipes);
+
+});
+
+$router->map( 'POST', '/category_r', function() {
+
+    $recipes = searchCategoryRecipe($_POST['category']);
+
+    echo json_encode($recipes);
+
+});
+
 $router->map( 'POST', '/search', function() {
 
     $products = AutoCompleteSearch($_POST['search']);

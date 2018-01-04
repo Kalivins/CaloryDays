@@ -9,7 +9,7 @@ class PostRecipe extends Bdd
     public function getRecipes()
     {
         $pdo = $this->dbConnect();
-        $req = $pdo->query('SELECT id_recette, preparation, difficulty, time_prep, person_for, nom_recette, photo FROM recette ORDER BY id_recette LIMIT 0,30');
+        $req = $pdo->query('SELECT id_recette, category, preparation, difficulty, time_prep, person_for, nom_recette, photo FROM recette ORDER BY id_recette LIMIT 0,30');
         $result = $req->fetchAll();
 
         return $result;
@@ -18,11 +18,31 @@ class PostRecipe extends Bdd
     {
         $pdo = $this->dbConnect();
         $searching = '%'.$search.'%';
-        $posts = $pdo->prepare('SELECT id_recette, nom_recette, difficulty, time_prep, person_for, preparation, photo FROM recette WHERE nom_recette LIKE :search LIMIT 30');
+        $posts = $pdo->prepare('SELECT id_recette, category, nom_recette, difficulty, time_prep, person_for, preparation, photo FROM recette WHERE nom_recette LIKE :search LIMIT 30');
 
         $posts->bindParam(':search', $searching);
         $posts->execute();
         $post = $posts->fetchAll();
+
+        return $post;
+    }
+    public function getByDifficultyRecipes($diff)
+    {
+        $pdo = $this->dbConnect();
+        $req = $pdo->prepare('SELECT id_recette, category, nom_recette, difficulty, time_prep, person_for, preparation, photo FROM recette WHERE difficulty = :diff LIMIT 30');
+        $req->bindParam(':diff', $diff);
+        $req->execute();
+        $post = $req->fetchAll();
+
+        return $post;
+    }
+    public function getByCategoryRecipes($category)
+    {
+        $pdo = $this->dbConnect();
+        $req = $pdo->prepare('SELECT id_recette, category, nom_recette, difficulty, time_prep, person_for, preparation, photo FROM recette WHERE category = :category LIMIT 30');
+        $req->bindParam(':category', $category);
+        $req->execute();
+        $post = $req->fetchAll();
 
         return $post;
     }
@@ -35,8 +55,8 @@ class PostRecipe extends Bdd
         $req = $pdo->prepare(
             'BEGIN;
             INSERT INTO recette
-            (preparation, nom_recette, difficulty, time_prep, person_for, photo)
-            VALUES (:preparation, :nom_recette, :difficulty, :time_prep, :person_for, :photo);
+            (preparation, nom_recette, difficulty, time_prep, person_for, category, photo)
+            VALUES (:preparation, :nom_recette, :difficulty, :time_prep, :person_for, :category, :photo);
             INSERT INTO user_recette
             (id_user, id_recette)
             VALUES (:id_user, LAST_INSERT_ID());
@@ -47,6 +67,7 @@ class PostRecipe extends Bdd
         $req->bindParam(':difficulty', $_POST['difficulty']);
         $req->bindParam(':time_prep', $_POST['time_prep']);
         $req->bindParam(':person_for', $_POST['person_for']);
+        $req->bindParam(':category', $_POST['category']);
         $req->bindParam(':photo', $id_photo);
         $req->bindParam(':id_user', $id_user);
         return $req->execute();

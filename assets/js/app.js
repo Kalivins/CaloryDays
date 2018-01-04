@@ -23,6 +23,14 @@ $(document).ready(function() {
        var search = $('#cat :selected').text();
        searchingCategory(search);
     });
+    $('#diff').change(function (e) {
+        var search = $('#diff :selected').text();
+        searchingDifficulty(search);
+    });
+    $('#category_r').change(function (e) {
+        var search = $('#category_r :selected').text();
+        searchingCategoryRecipe(search);
+    });
     $('.autocomplete').keypress(function(e) {
         var search = $('.searched').val();
         if (search.length >= 3) {
@@ -283,8 +291,74 @@ function searchingRecipe(search) {
 
                 datat.forEach(function(index) {
                     complete[index.nom_recette] = 'http://localhost/MyFridgeFood/upload/'+index.photo+'.jpg';
-                        $('.searching-recipe').append('<div class="col s12 m4 l3"><div class="card products"><div class="card-image"><img src="http://localhost/MyFridgeFood/upload/'+index.photo+'.jpg" width="300" height="250" alt="image de '+index.nom_recette+'"><span class="card-title title-card">'+index.nom_recette+'</span></div><div class="card-content"><p class="truncate">'+index.preparation+'</p></div><div class="card-action actioncard"><a class="btn" href="recipe/'+index.id_recette+'">Voir la recette</a></div></div></div>');
+                        $('.searching-recipe').append('<div class="col s12 m4 l3"><div class="card products"><div class="card-image"><img src="http://localhost/MyFridgeFood/upload/'+index.photo+'.jpg" width="300" height="250" alt="image de '+index.nom_recette+'"><span class="card-title title-card">'+index.nom_recette+'</span></div><div class="card-content"><p class="truncate donnee_rec"><span><i class="material-icons">keyboard_arrow_right</i>'+index.difficulty+'</span><br/><span><i class="material-icons">access_alarm</i>'+index.time_prep+'</span> <span><i class="material-icons">group</i>'+index.person_for+' personnes</span></p></div><div class="card-action actioncard"><a class="btn" href="recipe/'+index.id_recette+'">Voir la recette</a></div></div></div>');
                     });
+                $('.autocomplete-recipe').autocomplete({
+                    data: complete,
+                    limit: 14,
+                    onAutocomplete: function(val) {
+
+                        searchingRecipe(val);
+                    },
+                    minLength: 2,
+                });
+
+            });
+            $('.searching-recipe').fadeIn(400, "linear");
+        }
+    });
+}
+function searchingDifficulty(search) {
+    $.ajax({
+        url: "http://localhost/MyFridgeFood/difficulty",
+        type: 'POST',
+        data: {
+            difficulty: search,
+        },
+        dataType: 'json',
+        success: function (data) {
+            $('.searching-recipe').fadeOut(400, "linear", function() {
+
+                $('.searching-recipe').html('');
+                var complete = {};
+
+                data.forEach(function(index) {
+                    complete[index.nom_recette] = 'http://localhost/MyFridgeFood/upload/'+index.photo+'.jpg';
+                    $('.searching-recipe').append('<div class="col s12 m4 l3"><div class="card products"><div class="card-image"><img src="http://localhost/MyFridgeFood/upload/'+index.photo+'.jpg" width="300" height="250" alt="image de '+index.nom_recette+'"><span class="card-title title-card">'+index.nom_recette+'</span></div><div class="card-content"><p class="truncate donnee_rec"><span><i class="material-icons">keyboard_arrow_right</i>'+index.difficulty+'</span><br/><span><i class="material-icons">access_alarm</i>'+index.time_prep+'</span> <span><i class="material-icons">group</i>'+index.person_for+' personnes</span></p></div><div class="card-action actioncard"><a class="btn" href="recipe/'+index.id_recette+'">Voir la recette</a></div></div></div>');
+                });
+                $('.autocomplete-recipe').autocomplete({
+                    data: complete,
+                    limit: 14,
+                    onAutocomplete: function(val) {
+
+                        searchingRecipe(val);
+                    },
+                    minLength: 2,
+                });
+
+            });
+            $('.searching-recipe').fadeIn(400, "linear");
+        }
+    });
+}
+function searchingCategoryRecipe(search) {
+    $.ajax({
+        url: "http://localhost/MyFridgeFood/category_r",
+        type: 'POST',
+        data: {
+            category: search,
+        },
+        dataType: 'json',
+        success: function (data) {
+            $('.searching-recipe').fadeOut(400, "linear", function() {
+
+                $('.searching-recipe').html('');
+                var complete = {};
+
+                data.forEach(function(index) {
+                    complete[index.nom_recette] = 'http://localhost/MyFridgeFood/upload/'+index.photo+'.jpg';
+                    $('.searching-recipe').append('<div class="col s12 m4 l3"><div class="card products"><div class="card-image"><img src="http://localhost/MyFridgeFood/upload/'+index.photo+'.jpg" width="300" height="250" alt="image de '+index.nom_recette+'"><span class="card-title title-card">'+index.nom_recette+'</span></div><div class="card-content"><p class="truncate donnee_rec"><span><i class="material-icons">keyboard_arrow_right</i>'+index.difficulty+'</span><br/><span><i class="material-icons">access_alarm</i>'+index.time_prep+'</span> <span><i class="material-icons">group</i>'+index.person_for+' personnes</span></p></div><div class="card-action actioncard"><a class="btn" href="recipe/'+index.id_recette+'">Voir la recette</a></div></div></div>');
+                });
                 $('.autocomplete-recipe').autocomplete({
                     data: complete,
                     limit: 14,

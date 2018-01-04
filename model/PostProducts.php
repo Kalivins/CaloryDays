@@ -9,8 +9,7 @@ class PostProducts extends Bdd
     public function getProducts()
     {
         $pdo = $this->dbConnect();
-        $e = rand(0, 21000);
-        $posts = $pdo->query('SELECT id, product_name, brands, main_category_fr, energy_100g, image_small_url, image_url FROM food ORDER BY product_name LIMIT '.$e.',40');
+        $posts = $pdo->query('SELECT id, product_name, brands, main_category_fr, energy_100g, image_small_url, image_url FROM food ORDER BY product_name LIMIT 50');
 
         $req = $this->SetValues($posts);
         return $req;
