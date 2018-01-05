@@ -3,13 +3,13 @@ session_start();
 require('controller/baseController.php');
 require('vendor/autoload.php');
 // La variable locate qui défini le "nom de domaine" du site
-$locate = 'http://localhost';
+$locate = 'https://kevinv.promo-5.codeur.online/projets';
 
 $router = new AltoRouter();
 
 $loader = new Twig_Loader_Filesystem(__DIR__ .'/view');
 $twig = new Twig_Environment($loader, array (
-        'cache' => true,
+        'cache' => __DIR__.'/cache',
 ));
 
 $router->setBasePath('MyFridgeFood/');

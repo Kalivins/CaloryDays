@@ -1,5 +1,5 @@
 {% extends 'template.html' %} {% block head %}
-<title>Bienvenue sur MyFridgeFood</title>
+<title>Bienvenue sur CaloryDays !</title>
 {% endblock head %} {% block landing %}
 <section class="description">
     <div class=" slides carousel carousel-slider center" data-indicators="true">
@@ -18,7 +18,7 @@
 
         <div class="carousel-item green white-text" style="text-shadow: 1px 1px 1px black; background-image: url(http://www.moulinex.fr/medias/Entete-Soupe2.jpg?context=bWFzdGVyfFZpc3VlbHMgQUNUVVN8MjE2NTMzfGltYWdlL2pwZWd8aDQzL2hkNC84ODQ4ODIxMzU0NTI2LmpwZ3xhZjJjN2FhMTdlYjU2YjkzNjliODJjYWM0OWE5MjhiNzJlYzY4YjcyZGZlOTg3YThjMzEyYzQ2ZDIyZmM5MTAz); background-repeat:no-repeat; background-size:cover;">
             <h2 class="white-text">Ajouter une recette</h2>
-            <p class="white-text">Partage ta recette de malade !</p>
+            <p class="white-text">Partage ta recette avec la communauté !</p>
             {% if session.result == true %}
             <a href="add_recipe" class="waves-effect waves-light yellow lighten-2 btn">Ajouter</a> {% else %}
             <a href="#connexion" class="waves-effect waves-light modal-trigger btn">Connectez-vous</a> {% endif %}
@@ -50,7 +50,7 @@
                 </div>
                 <div class="card-action">
                         {% if session.result != true %}
-                        <a href="#connexion" class="waves-effect waves-light modal-trigger btn">Connectez-vous</a>
+                        <a href="#connexion" class="waves-effect waves-light modal-trigger yellow lighten-2 btn">Connectez-vous</a>
                         {% else %}
                     <a href="add_recipe" class="waves-effect waves-light btn yellow lighten-2" style="color: white !important; text-shadow: 1px 1px 1px black;">Accéder</a>
                     {% endif %}
