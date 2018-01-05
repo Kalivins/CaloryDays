@@ -6,7 +6,7 @@ class Bdd
 {
     protected function dbConnect()
     {
-            $pdo = new \PDO("mysql:host=localhost;dbname=food;charset=utf8;", 'root', '');
+            $pdo = new \PDO("mysql:host=127.0.0.1;dbname=food;charset=utf8;", 'root', '');
             return $pdo;
     }
 }

@@ -1,9 +1,9 @@
-<?php
+﻿<?php
 session_start();
 require('controller/baseController.php');
 require('vendor/autoload.php');
 // La variable locate qui défini le "nom de domaine" du site
-$locate = 'https://kevinv.promo-5.codeur.online/projets';
+$locate = 'http://localhost';
 
 $router = new AltoRouter();
 
